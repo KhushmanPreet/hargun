@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hargunkambo</title>
+  <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
+  <link rel="stylesheet" href="css/video.css">
+
+</head>
+<body>
+
+    <<header>
+        <div id="name" class="name">HARGUN KAMBO</div>
+        
+        <nav>
+          <ul>
+            <li id="hover"><a href="index.html">HOME</a></li>
+            <li id="hover"><a href="work.html">WORK</a></li>
+            <li id="hover"><a href="journal.html">JOURNAL</a></li>
+            <li id="hover"><a href="about.html">ABOUT</a></li>
+          </ul>
+        </nav>
+           
+        
+    </header>
+    <div class="video-container">
+      
+      <div class="video-wrapper" onclick="openPopup('allProject/videos/meth.mp4')">
+          <video src="allProject/videos/meth.mp4" autoplay loop muted></video>
+      </div>
+      <div class="video-wrapper" onclick="openPopup('allProject/videos/budapest.mp4')">
+          <video src="allProject/videos/budapest.mp4" autoplay loop muted></video>
+      </div>
+      <div class="video-wrapper" onclick="openPopup('allProject/videos/martin.mp4')">
+          <video src="allProject/videos/martin.mp4" autoplay loop muted></video>
+      </div>
+      <div class="video-wrapper" onclick="openPopup('allProject/videos/vinland saga.mp4')">
+          <video src="allProject/videos/vinland saga.mp4" autoplay loop muted></video>
+      </div>
+  </div>
+
+  <div class="popup-container">
+      <div class="popup-video">
+          <video class="popup-video-element" src="" controls autoplay></video>
+          <button class="close-btn" onclick="closePopup()">Close</button>
+      </div>
+  </div>
+    <script src="script.js"></script>
+  
+</body>
+</html>

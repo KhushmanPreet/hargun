@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hargunkambo</title>
+  <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
+  <link rel="stylesheet" href="css/alljournals.css">
+  <link rel="stylesheet" href="css/journal.css">
+  <script src="script.js" defer></script>
+</head>
+<style>
+  body {
+    background: url(journal_imgs/bb0.jpg) center no-repeat ;
+
+}
+</style>
+<body>
+    
+  <header>
+    <div id="name" class="name">HARGUN KAMBO</div>
+    
+    <nav>
+      <ul>
+        <li id="hover"><a href="index.html">HOME</a></li>
+        <li id="hover"><a href="work.html">WORK</a></li>
+        <li id="hover"><a href="journal.html">JOURNAL</a></li>
+        <li id="hover"><a href="about.html">ABOUT</a></li>
+      </ul>
+    </nav>
+       
+    
+</header>
+    <div id="journals">
+      <ul>
+        <li id="hover"><a href="breakingbad.html">Breaking Bad</a></li>
+        <li id="hover"><a href="budapesthotel.html">The Great Budapest Hotel</a></li>
+        <li id="hover"><a href="kendrick.html">Kung Fu Kenny</a></li>
+        <li id="hover"><a href="evolution.html">Monkey or Man</a></li>
+        <li id="hover"><a href="breakingbad.html">Breaking Bad</a></li>
+        <li id="hover"><a href="budapesthotel.html">The Great Budapest Hotel</a></li>
+        <li id="hover"><a href="kendrick.html">Kung Fu Kenny</a></li>
+        <li id="hover"><a href="evolution.html">Monkey or Man</a></li>
+
+      </ul>
+    </div>
+    <div id="container">
+    <div class="text">
+        <h2 class="heading">Breaking Bad</h2>
+        <p class="para">Breaking Bad, a brilliant television series akin to the genius of a Martin Scorsese masterpiece, intricately weaves a mesmerizing narrative of moral decay and the human psyche's darkest corners. The show follows Walter White, a high school chemistry teacher turned methamphetamine manufacturer, compellingly portrayed by Bryan Cranston. As Scorsese deftly explores the complexities of human nature in his films, Breaking Bad delves into Walter White's gradual descent into criminality, crafting a gripping character study that leaves viewers both captivated and disturbed.</p>
+    </div>
+</div>
+
+<script>
+
+const textarea = document.getElementById('container');
+const navbartools = document.getElementById('bar');
+const journalnav = document.getElementById('journals');
+const hargunk = document.getElementById('Name');
+
+const images = ['url(journal_imgs/bb1.jpg) no-repeat center',
+ 'url(journal_imgs/bb2.jpg) no-repeat center',
+  'url(journal_imgs/bb3.jpg) no-repeat center',
+   'url(journal_imgs/bb4.jpg) no-repeat center',
+    'url(journal_imgs/bb0.jpg) no-repeat center']
+
+let imageindex = 0;
+let oneclick = 0;
+
+
+document.body.addEventListener('click', function onClick(event) {
+  //  change background
+  document.body.style.background = images[imageindex];
+  
+  oneclick++;
+  if(oneclick == 1){
+    textarea.style.opacity = 0;
+
+
+  }
+  imageindex++;
+
+  if (imageindex == images.length - 1) {
+    imageindex = 0;
+  }
+});
+
+
+
+</script>  
+</body>
+</html>
