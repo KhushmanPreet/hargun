@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('https://i.imgur.com/6wmyrkK.gif'),auto;
+  }
+
+
+.text {
+    position: absolute;
+    bottom: 50px;
+    left: 10%;
+    width: 50%;
+}
+
+.heading {
+    font-size: 50px;
+    user-select: none;
+}
+
+.para {
+    font-size: 20px;
+    user-select: none;
+    
+}
+
+#journals {
+    opacity: 0;
+    display: inline-block;
+}
+#journals:hover {
+    opacity: 1;
+}

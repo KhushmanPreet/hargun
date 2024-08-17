@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('https://i.imgur.com/6wmyrkK.gif'),auto;
+  }
+   body {
+    
+    background-color: #f7f7f6ec;
+    color: #000;
+    height: 100%;
+   }
+
+   .sortbuttons{ 
+    display: block;
+    clear: both;
+    overflow: hidden;
+  }
+
+  .headin {
+    padding-left: 50px;
+  }
+
+  button{
+    
+    border: none;
+    background: none;
+    font-weight: bold; 
+    color: #000;
+    display: block;
+    float: left;
+    margin: auto;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px; 
+    margin: 0 5px;
+    transition: color 0.3s ease-in-out;
+  }
+  button:active, button:hover{
+    color: var(--primary);
+  }
+
+  .title{
+    font-size: 80px;
+    color: var(--primary);
+  }
+
+.wrapper {
+  margin-top: 50px;
+}
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 50px 20px;
+    align-items: center;
+  }
+  
+  .post {
+    position: relative;
+    overflow: hidden;
+    
+  }
+  
+  .post img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s;
+    object-fit: contain;
+   
+  }
+  
+  .post .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 0, 0, 0.9);
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+  }
+
+  image:hover{
+    opacity: 0.5;
+  }
+  
+  .post:hover .overlay {
+    opacity: 1;
+    
+  }
+
+  
+  .post .overlay h3 {
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .post .image-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    padding-bottom: 100%; 
+  }
+  
+  .post .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .post img.landscape {
+    width: auto;
+    max-height: 100%;
+  }
+
+  html { scrollbar-width: none; } /* Firefox */
+  body { -ms-overflow-style: none; } /* IE and Edge */
+  body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */

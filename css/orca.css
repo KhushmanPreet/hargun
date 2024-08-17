@@ -1,0 +1,71 @@
+.title-text{
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: 50px;
+    margin-top: 80px;
+}
+
+.project-name {
+    font-size: 36px;
+}
+
+.project-type {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.project-labels span {
+    background-color: var(--primary);
+}
+
+img {
+    max-height: 600px;
+}
+
+.project-thoughts {
+    width: 50%;
+}
+
+.sec-wrapper {
+    padding-top: 100px;
+    margin: auto;
+    width: 90%;
+}
+
+.main-img {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.orca-imgs {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.kytn-img {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+.orca-vid {
+    margin-top: 80px;
+    margin-bottom: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.spotify-embed {
+
+    margin: auto;
+    width: 40%;
+}
+.all-work-btn {
+    margin: 300px 0;
+    
+}
