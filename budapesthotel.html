@@ -9,7 +9,7 @@
 </head>
 <style>
     body {
-    background: url(journal_imgs/tgbh0.jpg) center no-repeat;
+    background-image: url(journal_imgs/tgbh0.jpg);
 
 
 }
@@ -45,9 +45,8 @@
     </div>
     <div id="container">
     <div class="text">
-        <h2 class="heading">The Grand Budapest Hotel</h2>
-        <p class="para">Grand Budapest Hotel is a cinematic gem that exquisitely blends Wes Anderson's distinctive style with a whimsical narrative. A visually stunning masterpiece, the film takes audiences on a delightful journey through enchanting landscapes and eccentric characters. With its impeccable craftsmanship, witty humor, and heartfelt storytelling, it stands as a true work of art.</p>
-    </div>
+        <h2 class="heading">The Grand Budapest Hotel</h2>    
+      </div>
 </div>
 
 <script>
@@ -55,18 +54,18 @@
 const textarea = document.getElementById('container');
 const navbartools = document.getElementById('bar');
 
-const images = ['url(journal_imgs/tgbh0.jpg) no-repeat center',
- 'url(journal_imgs/tgbh1.jpg) no-repeat center',
-  'url(journal_imgs/tgbh2.jpg) no-repeat center',
-   'url(journal_imgs/tgbh3.jpg) no-repeat center',
-    'url(journal_imgs/tgbh4.jpg) no-repeat center']
+const images = ['url(journal_imgs/tgbh0.jpg)',
+ 'url(journal_imgs/tgbh1.jpg)',
+  'url(journal_imgs/tgbh2.jpg)',
+   'url(journal_imgs/tgbh3.jpg)',
+    'url(journal_imgs/tgbh4.jpg)']
 
 let imageindex = 0;
 let oneclick = 0;
 
 document.body.addEventListener('click', function onClick(event) {
   //  change background
-  document.body.style.background = images[imageindex];
+  document.body.style.backgroundImage = images[imageindex];
   
   oneclick++;
   if(oneclick == 1){

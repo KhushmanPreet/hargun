@@ -9,7 +9,7 @@
 </head>
 <style>
   body {
-    background: url(journal_imgs/bb0.jpg) center no-repeat ;
+    background: url(journal_imgs/bb0.jpg);
 
 }
 </style>
@@ -43,11 +43,10 @@
       </ul>
     </div>
     <div id="container">
-    <div class="text">
-        <h2 class="heading">Breaking Bad</h2>
-        <p class="para">Breaking Bad, a brilliant television series akin to the genius of a Martin Scorsese masterpiece, intricately weaves a mesmerizing narrative of moral decay and the human psyche's darkest corners. The show follows Walter White, a high school chemistry teacher turned methamphetamine manufacturer, compellingly portrayed by Bryan Cranston. As Scorsese deftly explores the complexities of human nature in his films, Breaking Bad delves into Walter White's gradual descent into criminality, crafting a gripping character study that leaves viewers both captivated and disturbed.</p>
-    </div>
-</div>
+      <div class="text">
+          <h2 class="heading">Breakong Bad</h2>    
+        </div>
+  </div>
 
 <script>
 
@@ -56,11 +55,11 @@ const navbartools = document.getElementById('bar');
 const journalnav = document.getElementById('journals');
 const hargunk = document.getElementById('Name');
 
-const images = ['url(journal_imgs/bb1.jpg) no-repeat center',
- 'url(journal_imgs/bb2.jpg) no-repeat center',
-  'url(journal_imgs/bb3.jpg) no-repeat center',
-   'url(journal_imgs/bb4.jpg) no-repeat center',
-    'url(journal_imgs/bb0.jpg) no-repeat center']
+const imagess = ['url(journal_imgs/bb1.jpg)',
+ 'url(journal_imgs/bb2.jpg)',
+  'url(journal_imgs/bb3.jpg)',
+   'url(journal_imgs/bb4.jpg)',
+    'url(journal_imgs/bb0.jpg)']
 
 let imageindex = 0;
 let oneclick = 0;
@@ -68,7 +67,8 @@ let oneclick = 0;
 
 document.body.addEventListener('click', function onClick(event) {
   //  change background
-  document.body.style.background = images[imageindex];
+  document.body.style.backgroundImage = imagess[imageindex];
+
   
   oneclick++;
   if(oneclick == 1){
@@ -78,7 +78,7 @@ document.body.addEventListener('click', function onClick(event) {
   }
   imageindex++;
 
-  if (imageindex == images.length - 1) {
+  if (imageindex == imagess.length - 1) {
     imageindex = 0;
   }
 });
