@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>hargunkambo</title>
+  <title>Hargun Kambo - Journal</title>
   <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
   <link rel="stylesheet" href="css/journal.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
+  
   <header>
     <div id="name" class="name">HARGUN KAMBO</div>
-    
     <nav>
       <ul>
-        <li id="hover"><a href="index.html">HOME</a></li>
-        <li id="hover"><a href="work.html">WORK</a></li>
-        <li id="hover"><a href="journal.html">JOURNAL</a></li>
-        <li id="hover"><a href="about.html">ABOUT</a></li>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="work.html">WORK</a></li>
+        <li><a href="journal.html">JOURNAL</a></li>
+        <li><a href="about.html">ABOUT</a></li>
       </ul>
     </nav>
-       
+  </header>
+
+  <main class="journal-wrapper">
+
+    <section id="start-screen" onclick="startJournal()">
+      <div class="title-large">THE JOURNAL</div>
+      <div class="subtitle">CLICK TO OPEN</div>
+    </section>
     
-</header>
-<section class="journal">
-  <div class="gallery" id="gallery">
-    <img src="allProject/jewjournal/downscale1.jpg" data-date="2025-01-10">
-    <img src="allProject/jewjournal/downscale2.jpg" data-date="2025-02-02">
-    <img src="allProject/jewjournal/downscale3.jpg" data-date="2024-12-20">
-    <img src="allProject/jewjournal/refine1.jpg" data-date="2025-03-01">
-    <img src="allProject/jewjournal/Tryna refine this shit . (4).jpg" data-date="2025-03-01">
-    <img src="allProject/jewjournal/Tryna refine this shit ..jpg" data-date="2025-01-10">
-    <img src="allProject/jewjournal/Tryna refine(3).jpg" data-date="2025-02-02">
-    <img src="allProject/jewjournal/Tryna refine this shit . (5).jpg" data-date="2024-12-20">
-    <img src="allProject/jewjournal/refine1.jpg" data-date="2025-03-01">
-    <img src="allProject/jewjournal/downscale2.jpg" data-date="2025-02-02">
-    <img src="allProject/jewjournal/Tryna refine(2).jpg" data-date="2024-12-20">
-    <img src="allProject/jewjournal/refine1.jpg" data-date="2025-03-01">
-    <img src="allProject/jewjournal/Tryna refine this shit . (4).jpg" data-date="2025-03-01">
-  </div>
+    <div id="fullscreen-menu">
+      <div class="menu-content">
+        <div class="menu-header">TABLE OF CONTENTS</div>
+        <ul id="menu-list">
+          </ul>
+        <div class="close-menu" onclick="toggleMenu()">CLOSE INDEX</div>
+      </div>
+    </div>
 
-</section>
-<div class="sort-wrapper">
-  <button id="sortToggle">
-    <span id="sortLabel">Unsorted</span>
-    <span class="arrow">↕</span>
-  </button>
-</div>
+    <div id="bookmark-container">
+      <div class="ribbon-bookmark">
+        <span id="active-bookmark-text">SELECT CHAPTER</span>
+      </div>
+    </div>
 
+    <section class="photo-background" id="album-stage">
+      </section>
 
-<div class="lightbox" id="lightbox">
-  <span class="close">&times;</span>
-  <img id="lightbox-img">
-</div>
+    <div class="nav-overlay-forward" id="nav-forward"></div> 
 
+  </main>
 
-
-<script src="js/journal.js"></script>
-  
+  <script src="script.js"></script>
 </body>
 </html>

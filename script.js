@@ -139,136 +139,122 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // kjournal
-const gallery = document.getElementById("gallery");
 
-// SORT BUTTON
-const sortWrapper = document.querySelector(".sort-wrapper");
-const sortToggle = document.getElementById("sortToggle");
-const sortLabel = document.getElementById("sortLabel");
+const projects = {
+  project1: {
+    title: "Urban Silence",
+    // CHECK THESE PATHS! Make sure these files actually exist in your folder
+    images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"] 
+  },
+  project2: {
+    title: "Neon Nights",
+    images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"]
+  }, project3: {
+    title: "Urban Silence",
+    // CHECK THESE PATHS! Make sure these files actually exist in your folder
+    images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"] 
+  }
+}
+let currentProjectKey = "project1";
+let pageIndex = 0;
+let isJournalStarted = false;
 
-// LIGHTBOX
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const closeBtn = document.querySelector(".close");
+/* --- INITIALIZATION --- */
+window.onload = () => {
+  // 1. Generate the Menu Items
+  const menuList = document.getElementById('menu-list');
+  menuList.innerHTML = "";
+  
+  Object.keys(projects).forEach((key, index) => {
+    const li = document.createElement('li');
+    li.className = 'menu-item';
+    li.innerText = projects[key].title; 
+    li.onclick = () => loadProject(key);
+    menuList.appendChild(li);
+  });
 
-let isSorted = false;
-let currentIndex = 0;
+  // 2. Setup Interactions
+  document.getElementById('bookmark-container').onclick = toggleMenu;
+  document.getElementById('nav-forward').onclick = nextPage;
+};
 
-// Store original order ONCE
-const originalOrder = Array.from(gallery.children);
+/* --- CORE FUNCTIONS --- */
 
-// --------------------
-// SORT TOGGLE
-// --------------------
-sortToggle.addEventListener("click", () => {
-  gallery.classList.add("fade-out");
+function startJournal() {
+  const startScreen = document.getElementById('start-screen');
+  const stage = document.getElementById('album-stage');
+  
+  startScreen.style.opacity = 0;
+  setTimeout(() => {
+    startScreen.style.display = 'none';
+  }, 800);
+
+  isJournalStarted = true;
+  loadProject(currentProjectKey); 
+  
+  setTimeout(() => {
+    stage.style.opacity = 1;
+  }, 500);
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('fullscreen-menu');
+  menu.classList.toggle('active');
+}
+
+function loadProject(key) {
+  currentProjectKey = key;
+  pageIndex = 0;
+  
+  document.getElementById('active-bookmark-text').innerText = projects[key].title;
+  document.getElementById('fullscreen-menu').classList.remove('active');
+  
+  renderPage();
+}
+
+function renderPage() {
+  if(!isJournalStarted) return; 
+
+  const stage = document.getElementById('album-stage');
+  const project = projects[currentProjectKey];
+  const images = project.images;
+
+  stage.style.opacity = 0;
 
   setTimeout(() => {
-    isSorted = !isSorted;
-
-    let images;
-
-    if (isSorted) {
-      images = [...originalOrder].sort(
-        (a, b) => new Date(b.dataset.date) - new Date(a.dataset.date)
-      );
-      sortLabel.innerText = "Sorted";
-      sortWrapper.classList.add("sorted");
+    stage.innerHTML = "";
+    
+    // Page 0 = Single Cover. Others = Pairs.
+    if (pageIndex === 0) {
+      stage.className = "photo-background single";
+      stage.innerHTML = `<img src="${images[0]}" class="album-img">`;
     } else {
-      images = [...originalOrder];
-      sortLabel.innerText = "Unsorted";
-      sortWrapper.classList.remove("sorted");
+      stage.className = "photo-background pair";
+      const startIdx = 1 + (pageIndex - 1) * 2;
+      
+      let html = "";
+      if (images[startIdx]) html += `<img src="${images[startIdx]}" class="album-img">`;
+      if (images[startIdx+1]) html += `<img src="${images[startIdx+1]}" class="album-img">`;
+      
+      stage.innerHTML = html;
     }
 
-    gallery.innerHTML = "";
-    images.forEach(img => gallery.appendChild(img));
-
-    gallery.classList.remove("fade-out");
-  }, 200);
-});
-
-// --------------------
-// OPEN LIGHTBOX
-// --------------------
-gallery.addEventListener("click", e => {
-  if (e.target.tagName !== "IMG") return;
-
-  const images = Array.from(gallery.querySelectorAll("img"));
-  currentIndex = images.indexOf(e.target);
-
-  if (currentIndex === -1) return;
-
-  openLightbox(images);
-});
-
-function openLightbox(images) {
-  lightboxImg.src = images[currentIndex].src;
-  lightbox.style.display = "flex";
-  document.body.style.overflow = "hidden";
+    stage.style.opacity = 1;
+  }, 300);
 }
 
-// --------------------
-// NAVIGATE LIGHTBOX
-// --------------------
-lightbox.addEventListener("click", e => {
-  if (e.target === closeBtn) return;
+function nextPage() {
+  if(!isJournalStarted) return;
 
-  const images = Array.from(gallery.querySelectorAll("img"));
-  const mid = window.innerWidth / 2;
+  const project = projects[currentProjectKey];
+  const totalPages = Math.ceil((project.images.length - 1) / 2) + 1;
 
-  if (e.clientX < mid) {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
+  if (pageIndex < totalPages - 1) {
+    pageIndex++;
+    renderPage();
   } else {
-    currentIndex = (currentIndex + 1) % images.length;
+    // Loop back to start of THIS project
+    pageIndex = 0;
+    renderPage();
   }
-
-  lightboxImg.src = images[currentIndex].src;
-});
-
-// --------------------
-// CLOSE LIGHTBOX
-// --------------------
-closeBtn.addEventListener("click", () => {
-  closeLightbox();
-});
-
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeLightbox();
-});
-
-function closeLightbox() {
-  lightbox.style.display = "none";
-  document.body.style.overflow = "";
-}
-// Update cursor direction based on mouse position
-lightbox.addEventListener("mousemove", e => {
-  const mid = window.innerWidth / 2;
-
-  lightbox.classList.toggle("left", e.clientX < mid);
-  lightbox.classList.toggle("right", e.clientX >= mid);
-});
-
-
-// christman method bowlright 5
-const slides = document.querySelectorAll('.slides img'); 
-let slideIndex = 0;
-let intervalID = null;
-
-initializeSlider();
-
-function initializeSlider() {
-    
-  slides[slideIndex].classList.add("displaySlide");
-}
-
-function showSlide() {
-
-}
-
-function prevSlide() {
-
-}
-
-function nextSlide() {
-
 }

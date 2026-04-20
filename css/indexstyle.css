@@ -28,14 +28,13 @@
   header {
     position: sticky;
     top: 0;
-    z-index: 3;
+    z-index: 3000;
     width: 100%;
     padding: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     user-select: none;
-    background-color: #f7f7f6ec;
   }
   nav ul {
     list-style-type: none;
