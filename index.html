@@ -1,38 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>hargunkambo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HARGUN KAMBO</title>
   <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
   <script src="script.js" defer></script>
-  
 </head>
-<body>
+<body class="home-page">
+
+    <!-- Atmospheric Layers -->
+   <!-- Atmospheric Layers -->
+   <div class="grain-overlay"></div>
+   <div class="vignette"></div>
+   <div id="leak" class="light-leak"></div>
+   <div id="leak2" class="light-leak-2"></div> <!-- ADD THIS LINE -->
+    
+
+    <!-- Navigation Controls -->
+    <div class="click-zone left" id="btn-prev" title="Previous Slide"></div>
+    <div class="click-zone right" id="btn-next" title="Next Slide"></div>
 
     <header>
-        <div id="name" class="name">HARGUN KAMBO</div>
-        
+        <a href="index.html" id="name" class="name">HARGUN KAMBO</a>
         <nav>
           <ul>
-            <li id="hover"><a href="index.html">HOME</a></li>
+            <li id="hover"><a href="index.html" class="active-link">HOME</a></li>
             <li id="hover"><a href="work.html">WORK</a></li>
             <li id="hover"><a href="journal.html">JOURNAL</a></li>
             <li id="hover"><a href="about.html">ABOUT</a></li>
           </ul>
         </nav>
-           
-        
     </header>
+
     <div class="wrapperr">
-     
-      <div class="carousel-container">
-        <img class="carousel-image active" src="allProject/jcole.jpg" onclick="location.href='cole.html';" alt="Image 1">
-        <img class="carousel-image" src="allProject/theShining.jpg" onclick="location.href='theshining.html';" alt="Image 2">
-        <img class="carousel-image" src="allProject/kdot.jpg" onclick="location.href='ketankdot.html';" alt="Image 3">
-        <img class="carousel-image" src="journal_imgs/tilluveerji/tillu.jpg" onclick="location.href='ketankdot.html';" alt="Image 4">  
+      <!-- The Screen. Clicking this now changes the slide. -->
+      <div class="carousel-container projector-screen">
+        
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <img src="allProject/jcole.jpg" alt="J Cole">
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="allProject/commercial/inthedusk/5.jpg" alt="The Shining">
+        </div>
+
+        <div class="slide">
+          <img src="allProject/commercial/drip by rage/3.jpg" alt="The Shining">
       </div>
-    
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="allProject/kdot.jpg" alt="Kendrick">
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="journal_imgs/tilluveerji/tillu.jpg" alt="Tillu Veerji">
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <video src="allProject/corpse of ls music video.mp4" autoplay loop muted playsinline></video>
+        </div>
+
+      </div>
     </div>
-  
   
 </body>
 </html>

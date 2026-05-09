@@ -4,45 +4,105 @@
 
 
     // JavaScript code for the image carousel
-    document.addEventListener("DOMContentLoaded", function() {
-        const images = document.querySelectorAll(".carousel-image");
-        const links = document.querySelectorAll(".carousel-links a");
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide');
+      const leak = document.getElementById('leak');   // The Orange Flash
+      const leak2 = document.getElementById('leak2'); // The Red Flash
+      const screen = document.querySelector('.projector-screen');
+      let currentIndex = 0;
+      let isAnimating = false;
+      let autoTimer; 
   
-        let currentImageIndex = 0;
+      function triggerSlideChange(newIndex) {
+          if (isAnimating) return; 
+          isAnimating = true;
   
-        function showImage(index) {
-          images.forEach(function(image) {
-            image.classList.remove("active");
-          });
+          // --- THE RANDOMIZER ---
+          const diceRoll = Math.random(); // Generates a number between 0.0 and 1.0
+          let showOrange = false;
+          let showRed = false;
   
-          links.forEach(function(link) {
-            link.classList.remove("active");
-          });
-  
-          images[index].classList.add("active");
-          links[index].classList.add("active");
-        }
-  
-        function nextImage() {
-          currentImageIndex++;
-          if (currentImageIndex === images.length) {
-            currentImageIndex = 0;
+          if (diceRoll < 0.33) {
+              showOrange = true; // 33% chance: Only Orange
+          } else if (diceRoll < 0.66) {
+              showRed = true;    // 33% chance: Only Red
+          } else {
+              showOrange = true;
+              showRed = true;    // 34% chance: Both together!
           }
-          showImage(currentImageIndex);
-        }
   
-        // Change image every 5 seconds
-        setInterval(nextImage, 2000);
+          // 1. Trigger Orange Flash (if chosen)
+          if (showOrange) {
+              leak.classList.remove('flash-anim');
+              void leak.offsetWidth; 
+              leak.classList.add('flash-anim');
+          }
+  
+          // 2. Trigger Red Flash (if chosen)
+          if (showRed) {
+              leak2.classList.remove('flash-anim-2');
+              void leak2.offsetWidth; 
+              leak2.classList.add('flash-anim-2');
+          }
+  
+          // 3. Snap slides halfway through the flash window
+          setTimeout(() => {
+              slides[currentIndex].classList.remove('active');
+              currentIndex = newIndex;
+              slides[currentIndex].classList.add('active');
+          }, 100); 
+  
+          // 4. Unlock interaction
+          setTimeout(() => {
+              isAnimating = false;
+          }, 300); 
+      }
+  
+      // --- Navigation Logic ---
+      function nextSlide() {
+          let nextIndex = (currentIndex + 1) % slides.length; 
+          triggerSlideChange(nextIndex);
+      }
+  
+      function prevSlide() {
+          let prevIndex = (currentIndex - 1 + slides.length) % slides.length; 
+          triggerSlideChange(prevIndex);
+      }
+  
+      function startTimer() {
+          clearInterval(autoTimer); 
+          autoTimer = setInterval(nextSlide, 2500); 
+      }
+  
+      // --- Click & Keyboard Events ---
+      document.getElementById('btn-next').addEventListener('click', () => {
+          nextSlide();
+          startTimer(); 
       });
-
-const webname = document.getElementById('name');
-webname.addEventListener('click', function onClick(event) {
   
-  window.location.href = 'index.html';
-
-});
-
-
+      document.getElementById('btn-prev').addEventListener('click', () => {
+          prevSlide();
+          startTimer();
+      });
+  
+      screen.addEventListener('click', () => {
+          nextSlide();
+          startTimer();
+      });
+  
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') {
+              nextSlide();
+              startTimer();
+          } else if (e.key === 'ArrowLeft') {
+              prevSlide();
+              startTimer();
+          }
+      });
+  
+      // Start the auto-play timer on load
+      startTimer();
+  });
 
 
   
