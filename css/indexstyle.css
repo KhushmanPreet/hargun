@@ -17,15 +17,16 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Monument', sans-serif;
-  cursor: url('https://i.imgur.com/6wmyrkK.gif'), auto;
+  /* Removed the custom cursor from here! */
 }
 
-/* --- Global Body Base --- */
 body {
-  background-color: #000000; 
+  background-color: #000000;
   color: #e0e0e0;
+  height: 100%;
+  /* Moved the custom cursor here instead! */
+  cursor: url('https://i.imgur.com/6wmyrkK.gif'), auto; 
 }
-
 /* --- Home Page Specific --- */
 body.home-page {
   overflow: hidden; 
@@ -44,6 +45,7 @@ header {
   user-select: none;
 }
 
+
 nav ul {
   list-style-type: none;
   margin-right: -20px;
@@ -60,28 +62,45 @@ nav ul li a, #name {
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 #name:hover, nav li:hover a {
   color: var(--primary); 
 }
 
+#name a {
+   
+    color: inherit; /* Inherits the text color of the parent element */
+    text-decoration: none; /* Removes the underline */
+   
+  
+}
+
 /* --- Raw Analog Effects (Made MORE Grungy) --- */
+/* --- Raw Analog Effects --- */
 .grain-overlay {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none;
-  z-index: 50;
-  opacity: 0.10; /* INCREASED from 0.08 for more grit */
+  
+  /* CHANGED: Moved from 50 to 5. It now sits behind the photos (which are z-index 10) */
+  z-index: 5; 
+  
+  /* CHANGED: Lowered from 0.15 to 0.05 for a very subtle background texture */
+  opacity: 0.05; 
+  
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
-
 .vignette {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none;
-  z-index: 40;
-  box-shadow: inset 0 0 250px rgba(0,0,0,0.98); /* Deepened the black edges */
+  
+  /* CHANGED: Moved from 40 down to 6. It now sits behind the photos! */
+  z-index: 6; 
+  
+  box-shadow: inset 0 0 250px rgba(0,0,0,0.98);
 }
 
 .light-leak {

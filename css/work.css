@@ -1,149 +1,138 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    cursor: url('https://i.imgur.com/6wmyrkK.gif'),auto;
-  }
-   body {
-    
-    background-color: #f7f7f6ec;
-    color: #000;
-    height: 100%;
-   }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* CUSTOM CURSOR REMOVED FROM HERE */
+}
 
-   .sortbuttons{ 
-    display: block;
-    clear: both;
-    overflow: hidden;
-  }
+body {
+  background-color: #000000; /* Added black background */
+  color: white;
+  min-height: 100vh; /* FIX: Prevents the page from cutting off bottom photos! */
+  cursor: url('https://i.imgur.com/6wmyrkK.gif'), auto; /* CUSTOM CURSOR MOVED HERE */
+}
 
-  .headin {
-    padding-left: 50px;
-  }
+/* --- Centered Sorting Buttons --- */
+.headin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
 
-  button{
-    
-    border: none;
-    background: none;
-    font-weight: bold; 
-    color: #000;
-    display: block;
-    float: left;
-    margin: auto;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 15px; 
-    margin: 0 5px;
-    transition: color 0.3s ease-in-out;
-  }
-  button:active, button:hover{
-    color: var(--primary);
-  }
+.sortbuttons {
+  display: flex;
+  gap: 30px;
+}
 
-  .title{
-    font-size: 80px;
-    color: var(--primary);
-  }
+button {
+  border: none;
+  background: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer; /* Because the GIF is on body, this pointer will actually work now! */
+  font-size: 15px;
+  transition: color 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+button:active, button:hover, button.active {
+  color: var(--primary, red);
+}
 
 .wrapper {
   margin-top: 50px;
 }
 
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    padding: 50px 20px;
-    align-items: center;
-  }
-  
-  .post {
-    position: relative;
-    
-  }
-  
-  .post img {
-    display: block;
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    transition: transform 0.3s;
-    object-fit: contain;
-   
-  }
-  
-  .post .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 0, 0, 0.9);
-    opacity: 0;
-    transition: opacity 0.3s;
-    cursor: pointer;
-  }
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 50px 20px;
+  align-items: center;
+}
 
-  image:hover{
-    opacity: 0.5;
-  }
-  
-  .post:hover .overlay {
-    opacity: 1;
-    
-  }
+/* --- The Animation Setup (Removed) --- */
+/* --- Master Override: Kills all hidden scroll animations --- */
+.post {
+  position: relative;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  visibility: visible !important;
+}
 
+.post img {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  transition: transform 0.3s;
   
-  .post .overlay h3 {
-    color:antiquewhite;
-    font-size: 20px;
-    text-align: center;
-    margin: 0;
-  }
-  
-  .post .image-container {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    padding-bottom: 100%; 
-  }
-  
-  .post .image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .post img.landscape {
-    width: auto;
-    max-height: 100%;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    img {
-      animation: fade-in linear;
-      animation-timeline: view();
-      animation-range: entry 30% entry 70%;
-      animation-fill-mode: both;
-      animation-timing-function: ease-out;
-    }
-  
-    @keyframes fade-in {
-      from {
-        scale: 0.8;
-        opacity: 0;
-      }
-      to {
-        scale: 1;
-        opacity: 1;
-      }
-    }
-  }
-  
-  html { scrollbar-width: none; } /* Firefox */
-  body { -ms-overflow-style: none; } /* IE and Edge */
-  body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+  /* Force images to load instantly */
+  opacity: 1 !important; 
+  transform: none !important;
+  animation: none !important;
+}
+.post .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 0, 0, 0.9);
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: pointer; /* Overlay will show pointer hand on hover */
+}
+
+img:hover {
+  opacity: 0.5;
+}
+
+.post:hover .overlay {
+  opacity: 1;
+}
+
+.post .overlay h3 {
+  color: antiquewhite;
+  font-size: 20px;
+  text-align: center;
+  margin: 0;
+}
+
+.post .image-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  /* Removed padding-bottom: 100% as it creates massive hidden overflow boxes */
+}
+
+.post .image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.post img.landscape {
+  width: auto;
+  max-height: 100%;
+}
+
+/* --- Scrollbar Hiding --- */
+html { scrollbar-width: none; } /* Firefox */
+body { -ms-overflow-style: none; } /* IE and Edge */
+body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+
+/* --- Seamless Glide Transition Settings --- */
+::view-transition-group(*) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}

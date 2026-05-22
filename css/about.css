@@ -1,92 +1,106 @@
+/* --- Dexter Navy / Editorial Minimalist Style --- */
+
 .aboutme {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 80px;
-  box-sizing: border-box;
-}
-
-/* Main content row */
-.aboutme .desc,
-.aboutme .my-img {
-  flex: 1;
-}
-
-.aboutme > .desc,
-.aboutme > .my-img {
-  max-width: 500px;
-}
-
-/* Container for text + image */
-.aboutme {
-  gap: 40px;
-}
-
-/* Wrap text & image side by side */
-.aboutme {
+  /* Uses remaining screen height under header */
+  min-height: 80vh; 
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  gap: 80px;
 }
 
-/* Text styling */
+/* --- Typography & Text Layout --- */
+.desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* The Dexter Navy signature: all-caps, spaced out, utilitarian */
+  text-transform: uppercase; 
+  font-size: 15px; 
+  line-height: 1.8;
+  letter-spacing: 1px;
+}
+
 .desc p {
-  
-  text-align: center;
-  font-size: 18px;
-  line-height: 1.6;
-  color: #111;
+  color: #e0e0e0;
+  text-align: left; /* Sharp, left-aligned block */
+  margin-bottom: 20px;
 }
 
-.desc p:nth-child(2) {
-  margin: 20px 0;
+.desc p.divider {
+  color: var(--primary, red);
+  font-weight: bold;
+}
+
+/* --- Links & Icons --- */
+.email {
+  color: #e0e0e0;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+.email:hover {
+  color: var(--primary, red);
+  border-bottom: 1px solid var(--primary, red);
+}
+
+.logo {
+  margin-top: 20px;
+  font-size: 20px;
 }
 
 .logo a {
-  
-  color: black;
-  text-decoration: none;
-  transition: transform 0.3s ease, color 0.3s ease;
+  color: #e0e0e0;
+  transition: color 0.3s ease;
+  cursor: pointer;
 }
 
-/* Image */
+.logo a:hover {
+  color: var(--primary, red);
+}
+
+/* --- Image: Raw & Brutalist --- */
+.my-img {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .my-img img {
-  width: 85%;
+  width: 100%;
+  max-width: 450px;
   height: auto;
   object-fit: cover;
-  border-radius: 4px;
+  /* Dexter Navy doesn't do soft rounded corners. Keep it sharp. */
+  border-radius: 0; 
+  
+  /* Optional Analog Vibe: Grayscale by default, color on hover */
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.5s ease;
 }
 
-/* Instagram icon */
-.logo {
-  grid-column: 1 / -1;
-  margin-top: 40px;
-  font-size: 28px;
-  cursor: pointer;
-  text-align: center;
+.my-img img:hover {
+  filter: grayscale(0%) contrast(1);
 }
 
-.logo i {
-  cursor: pointer;
-}
-
-.email {
-  text-decoration: underline;
-  color: inherit;
-  cursor: pointer;
-}
-
-/* Responsive */
+/* --- Responsive for Mobile --- */
 @media (max-width: 900px) {
   .aboutme {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+  
+  .desc p {
+    text-align: center; /* Center text only on phones */
   }
 
-  .desc,
   .my-img {
-    max-width: 100%;
+    justify-content: center;
   }
 }

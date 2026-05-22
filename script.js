@@ -112,32 +112,51 @@
 document.addEventListener('DOMContentLoaded', function () {
   const buttons = document.querySelectorAll('.sortbuttons button');
   const posts = document.querySelectorAll('.projects .post');
+  
+  if (posts.length === 0) return; 
+
+  // --- THE MAGIC: Give each photo a unique tracking name ---
+  posts.forEach((post, index) => {
+    post.style.viewTransitionName = `photo-${index}`;
+  });
 
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
       const filter = this.getAttribute('data-filter');
-      filterPosts(filter);
+      
+      const applyFilter = () => {
+        posts.forEach(function (post) {
+          if (filter === 'all' || post.classList.contains(filter)) {
+            post.style.display = 'block';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+
+        // Update active button color
+        buttons.forEach(function (btn) {
+          if (btn === button) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      };
+
+      // --- Trigger the Seamless Glide ---
+      if (document.startViewTransition) {
+        document.startViewTransition(applyFilter);
+      } else {
+        // Fallback for older browsers
+        applyFilter(); 
+      }
+      
     });
   });
-
-  function filterPosts(filter) {
-    posts.forEach(function (post) {
-      if (filter === 'all' || post.classList.contains(filter)) {
-        post.style.display = 'block';
-      } else {
-        post.style.display = 'none';
-      }
-    });
-
-    buttons.forEach(function (button) {
-      if (button.getAttribute('data-filter') === filter) {
-        button.classList.add('active');
-      } else {
-        button.classList.remove('active');
-      }
-    });
-  }
 });
+
+
+
 
 // gallery.css
 
