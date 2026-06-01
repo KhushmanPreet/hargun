@@ -17,7 +17,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* The Dexter Navy signature: all-caps, spaced out, utilitarian */
   text-transform: uppercase; 
   font-size: 15px; 
   line-height: 1.8;
@@ -26,13 +25,27 @@
 
 .desc p {
   color: #e0e0e0;
-  text-align: left; /* Sharp, left-aligned block */
+  
+  /* THE MAGIC: Forces the text into a perfect rectangular box */
+  text-align: justify; 
+  
+  /* Optional: This hyphenation rule makes justified text look cleaner 
+     by breaking long words instead of creating weird spaces */
+  hyphens: auto; 
+  
   margin-bottom: 20px;
 }
 
+/* Center the + sign */
 .desc p.divider {
   color: var(--primary, red);
   font-weight: bold;
+  text-align: center;
+}
+
+/* Center the Contact line */
+.desc p:nth-of-type(3) {
+  text-align: center;
 }
 
 /* --- Links & Icons --- */
@@ -49,9 +62,11 @@
   border-bottom: 1px solid var(--primary, red);
 }
 
+/* Center the Instagram logo */
 .logo {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 20px;
+  text-align: center; 
 }
 
 .logo a {
@@ -72,7 +87,7 @@
 
 .my-img img {
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   height: auto;
   object-fit: cover;
   /* Dexter Navy doesn't do soft rounded corners. Keep it sharp. */
