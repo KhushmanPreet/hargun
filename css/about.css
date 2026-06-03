@@ -18,22 +18,23 @@
   flex-direction: column;
   justify-content: center;
   text-transform: uppercase; 
-  font-size: 15px; 
+  font-size: 16px; /* Bumped up slightly for impact */
   line-height: 1.8;
   letter-spacing: 1px;
+  
+  /* THE MAGIC BOX: We restrict the width so the text has to stack tightly */
+  max-width: 420px; 
+  margin: 0 auto; 
 }
 
 .desc p {
   color: #e0e0e0;
   
-  /* THE MAGIC: Forces the text into a perfect rectangular box */
+  /* Forces the left and right edges to be perfectly flat */
   text-align: justify; 
-  
-  /* Optional: This hyphenation rule makes justified text look cleaner 
-     by breaking long words instead of creating weird spaces */
   hyphens: auto; 
   
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 /* Center the + sign */
@@ -41,13 +42,13 @@
   color: var(--primary, red);
   font-weight: bold;
   text-align: center;
+  margin-bottom: 25px;
 }
 
 /* Center the Contact line */
 .desc p:nth-of-type(3) {
   text-align: center;
 }
-
 /* --- Links & Icons --- */
 .email {
   color: #e0e0e0;

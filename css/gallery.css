@@ -1,16 +1,50 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+  margin-top: 40px;
+}
 
+/* --- THE CROSS (CLOSE) BUTTON --- */
+/* --- THE CROSS (CLOSE) BUTTON --- */
+.close-gallery {
+  position: absolute;
+  top: 120px; /* CHANGED: Pushed this down from 40px so it clears the navbar */
+  right: 50px; /* Tucked it slightly closer to the edge */
+  font-size: 30px;
+  color: #e0e0e0;
+  z-index: 1000;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.close-gallery:hover {
+  color: var(--primary, red);
+  transform: scale(1.1); /* Added a tiny pop effect on hover */
+}
+
+/* Optional: On mobile screens where the header might stack and take up more room, push it down even further */
+@media (max-width: 900px) {
+  .close-gallery {
+    top: 160px; 
+    right: 30px;
+  }
+}
+
+/* --- THE MAIN GALLERY VIEWER --- */
 .gallery {
   position: relative;
   width: 100%;
-  height: 600px; 
-  overflow: hidden;
-  padding-top: 50px;
+  height: 65vh; /* Scales beautifully based on screen height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery-item {
@@ -20,66 +54,88 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s ease-in-out;
+  pointer-events: none; /* Prevents hidden images from blocking clicks */
 }
 
 .gallery-item.active {
   opacity: 1;
+  pointer-events: auto;
 }
 
-.gallery-item img{
+.gallery-item img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.gallery-item .nav-prev,
-.gallery-item .nav-next {
+/* --- NAV ARROWS (Now global & responsive) --- */
+.nav-prev,
+.nav-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
-  color: white;
-  background-color: black;
+  font-size: 35px;
+  color: #e0e0e0;
+  background: transparent;
   border: none;
-  padding: 10px;
   cursor: pointer;
+  z-index: 50;
+  transition: color 0.3s;
 }
 
-.gallery-item .nav-prev {
-  left: 300px;
+.nav-prev { left: 8%; }
+.nav-next { right: 8%; }
+
+.nav-prev:hover, .nav-next:hover { color: var(--primary, red); }
+
+/* --- THE 5-ITEM THUMBNAIL SLIDER --- */
+.thumbnail-window {
+  /* This width perfectly fits 5 thumbnails (60px each + 15px gaps) */
+  width: 360px; 
+  margin: 30px auto 0 auto;
+  overflow: hidden; /* Hides the rest of the film strip */
+  position: relative;
 }
 
-.gallery-item .nav-next {
-  right: 300px;
-}
-i {
-  cursor: pointer;
-}
-.thumbnails {
+.thumbnail-track {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px; 
+  gap: 15px;
+  /* This allows the javascript to smoothly slide the strip */
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .thumbnail-item {
-  margin: 0 5px;
+  flex-shrink: 0; /* Prevents thumbnails from squishing */
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  opacity: 0.3;
   cursor: pointer;
+  transition: opacity 0.3s;
 }
 
-.thumbnail-item img{
-  display: block;
-  width: 60px; 
-  height: auto;
-  border: 2px solid transparent;
-  opacity: 0.5;
-  cursor: pointer;
+.thumbnail-item.active {
+  opacity: 1;
 }
 
-.thumbnail-item.active img {
-  opacity: 1; 
-  width: 65px;
-  transform: 0.9 ease-in-out;
+.thumbnail-item:hover {
+  opacity: 0.8;
+}
+
+/* --- YOUTUBE EMBED PLAYER --- */
+.video-section {
+  width: 90%; /* Keeps it from touching the absolute edges of the screen */
+  max-width: 900px; /* Stops it from getting comically large on massive monitors */
+  margin: 80px auto 100px auto; /* Creates clean breathing room below the thumbnails */
+  display: flex;
+  justify-content: center;
+}
+
+.video-section iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Modern CSS magic: Forces a perfect widescreen box */
+  border: none;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* Optional: gives it a little depth against the dark background */
 }

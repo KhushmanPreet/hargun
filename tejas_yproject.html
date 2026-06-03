@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>hargunkambo</title>
+  <title>GALLERY - HARGUN KAMBO</title>
   <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
   <link rel="stylesheet" href="css/gallery.css">
   <script src="script.js" defer></script>
@@ -11,35 +11,42 @@
 
   <header>
     <div id="name" class="name"><a href="index.html">HARGUN KAMBO</a></div>
-    
     <nav>
       <ul>
-        <li id="hover"><a href="work.html">WORK</a></li>
-        <li id="hover"><a href="journal.html">JOURNAL</a></li>
-        <li id="hover"><a href="about.html">INFO</a></li>
+        <li><a href="work.html">WORK</a></li>
+        <li><a href="journal.html">JOURNAL</a></li>
+        <li><a href="about.html">INFO</a></li>
       </ul>
     </nav>
-       
+  </header>
+
+  <!-- THE CROSS BUTTON TO GO BACK -->
+  <a href="work.html" class="close-gallery">
+    <i class="fa-solid fa-xmark"></i>
+  </a>
+
+  <main class="gallery-container">
     
-</header>
     <div class="gallery">
-      <div class="gallery-item active">
-        <img src="allProject/New folder/fashion/trjas_yproject 9.jpg" alt="Image 1">
-        <button class="nav-prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="nav-next"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
-    
-      </div>
+      <!-- GLOBAL NAVIGATION BUTTONS (Only need 2!) -->
+      <button class="nav-prev"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="nav-next"><i class="fa-solid fa-chevron-right"></i></button>
+
+      <!-- THE IMAGES -->
+      <div class="gallery-item active"><img src="allProject/New folder/fashion/trjas_yproject 9.jpg" alt="Image 1"></div>
     </div>
     
-    <div class="thumbnails">
-      <div class="thumbnail-item active">
-        <img src="allProject/New folder/fashion/trjas_yproject 9.jpg" alt="Image 1">
+    <!-- THE NEW 5-ITEM THUMBNAIL SLIDER -->
+    <div class="thumbnail-window">
+      <div class="thumbnail-track">
+        <img class="thumbnail-item active" src="allProject/New folder/fashion/trjas_yproject 9.jpg" alt="Thumb 1">
       </div>
-     
-     
     </div>
-    
+
+  </main>
+
+  <!-- Premium Inversion Cursor -->
+  <div class="custom-cursor"></div>
 
 </body>
 </html>

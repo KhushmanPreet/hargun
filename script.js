@@ -163,25 +163,45 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   const galleryItems = document.querySelectorAll('.gallery-item');
   const thumbnails = document.querySelectorAll('.thumbnail-item');
+  const thumbTrack = document.querySelector('.thumbnail-track');
+  const thumbWindow = document.querySelector('.thumbnail-window');
+  
+  if (galleryItems.length === 0) return; // Only run on gallery page
 
   let currentImageIndex = 0;
 
   function showImage(index) {
-    galleryItems.forEach(function (item, i) {
-      if (i === index) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
+    // 1. Swap main images
+    galleryItems.forEach((item, i) => {
+      if (i === index) item.classList.add('active');
+      else item.classList.remove('active');
     });
 
-    thumbnails.forEach(function (item, i) {
-      if (i === index) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
+    // 2. Swap thumbnail opacities
+    thumbnails.forEach((item, i) => {
+      if (i === index) item.classList.add('active');
+      else item.classList.remove('active');
     });
+
+    // 3. The Magic: Slide the film strip to center the active thumbnail
+    if (thumbTrack && thumbWindow) {
+      const activeThumb = thumbnails[index];
+      
+      // Math to find the exact center
+      const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
+      const windowCenter = thumbWindow.offsetWidth / 2;
+      
+      // Calculate how far to push the track left
+      let slideAmount = thumbCenter - windowCenter;
+      
+      // Stop the track from sliding too far at the very beginning or end
+      const maxSlide = thumbTrack.scrollWidth - thumbWindow.offsetWidth;
+      if (slideAmount < 0) slideAmount = 0;
+      if (slideAmount > maxSlide) slideAmount = maxSlide;
+
+      // Apply the slide!
+      thumbTrack.style.transform = `translateX(-${slideAmount}px)`;
+    }
   }
 
   function navigate(direction) {
@@ -194,29 +214,24 @@ document.addEventListener('DOMContentLoaded', function () {
     showImage(currentImageIndex);
   }
 
-  const prevButtons = document.querySelectorAll('.nav-prev');
-  const nextButtons = document.querySelectorAll('.nav-next');
+  // Hook up the global next/prev buttons
+  const prevButton = document.querySelector('.nav-prev');
+  const nextButton = document.querySelector('.nav-next');
 
-  prevButtons.forEach(function (prevButton) {
-    prevButton.addEventListener('click', function () {
-      navigate(-1);
-    });
-  });
+  if (prevButton) prevButton.addEventListener('click', () => navigate(-1));
+  if (nextButton) nextButton.addEventListener('click', () => navigate(1));
 
-  nextButtons.forEach(function (nextButton) {
-    nextButton.addEventListener('click', function () {
-      navigate(1);
-    });
-  });
-
+  // Hook up clicking individual thumbnails
   thumbnails.forEach(function (item, index) {
     item.addEventListener('click', function () {
       currentImageIndex = index;
       showImage(currentImageIndex);
     });
   });
-});
 
+  // Run once on load to lock in the starting position
+  showImage(0);
+});
 // kjournal
 
 const projects = {
