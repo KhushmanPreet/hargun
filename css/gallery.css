@@ -139,3 +139,37 @@
   border: none;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* Optional: gives it a little depth against the dark background */
 }
+
+/* --- SMOOTH SCROLLING --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- BOUNCING DOWN ARROW --- */
+.scroll-down-arrow {
+  display: block;
+  text-align: center;
+  margin: 40px auto 10px auto;
+  font-size: 24px;
+  color: inherit; /* Matches your current text color */
+  text-decoration: none;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-down-arrow:hover {
+  opacity: 0.5;
+}
+
+/* The Bounce Animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
