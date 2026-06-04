@@ -1,4 +1,5 @@
-.title-text{
+/* --- MAIN TYPOGRAPHY & LAYOUT --- */
+.title-text {
     display: grid;
     gap: 2rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -33,6 +34,7 @@ img {
     width: 90%;
 }
 
+/* --- IMAGE CONTAINERS --- */
 .main-img {
     margin-bottom: 50px;
     display: flex;
@@ -53,19 +55,47 @@ img {
     place-items: center;
 }
 
+.spotify-embed {
+    margin: auto;
+    width: 40%;
+}
+
+.all-work-btn {
+    margin: 300px 0;
+    text-align: center; /* Ensures the button centers cleanly in its wrapper */
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE VIDEO OVERRIDES 
+   (Ensures your MP4 and YouTube embeds don't break) 
+---------------------------------------------------- */
+
+.main-vid {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.main-vid video {
+    max-height: 600px; /* Matches your img rule above */
+    width: auto;
+    pointer-events: none; /* Keeps the GIF illusion */
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
+}
+
 .orca-vid {
     margin-top: 80px;
     margin-bottom: 150px;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
-.spotify-embed {
-
-    margin: auto;
-    width: 40%;
-}
-.all-work-btn {
-    margin: 300px 0;
-    
+.orca-vid iframe {
+    width: 80%; /* Keeps it contained nicely within the layout */
+    max-width: 1000px;
+    aspect-ratio: 16 / 9; /* Widescreen ratio */
+    border: none;
+    border-radius: 8px;
 }
