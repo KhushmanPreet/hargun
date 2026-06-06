@@ -49,11 +49,10 @@ button:active, button:hover, button.active {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   justify-content: center;
-  padding: 50px 20px;
+  padding: 50px 20px 50px 20px;
   align-items: center;
 }
 
-/* --- The Animation Setup (Removed) --- */
 /* --- Master Override: Kills all hidden scroll animations --- */
 .post {
   position: relative;
@@ -75,6 +74,7 @@ button:active, button:hover, button.active {
   transform: none !important;
   animation: none !important;
 }
+
 .post .overlay {
   position: absolute;
   top: 0;
@@ -103,6 +103,7 @@ img:hover {
   font-size: 20px;
   text-align: center;
   margin: 0;
+  padding: 0 15px; /* Prevents text from hitting absolute edges on long titles */
 }
 
 .post .image-container {
@@ -134,4 +135,44 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
 ::view-transition-group(*) {
   animation-duration: 0.6s;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ====================================================
+   MOBILE RESPONSIVENESS (Phones & Small Tablets)
+==================================================== */
+@media (max-width: 768px) {
+  /* Tighter margins for the top filtering section */
+  .headin {
+    margin-bottom: 20px;
+  }
+
+  /* Wrap the sort buttons so they don't break off-screen if there are a lot of them */
+  .sortbuttons {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  button {
+    font-size: 13px; /* Slightly smaller text */
+  }
+
+  /* Fix the Grid: Forces a single column that spans 100% of the screen instead of rigid 400px */
+  .projects {
+    grid-template-columns: 1fr;
+    padding: 30px 15px 30px 15px;
+    gap: 30px; /* Slightly larger gap between stacked projects to give them breathing room */
+  }
+
+  /* Scale the images down so they don't take up the entire vertical screen */
+  .post .image-container, 
+  .post img {
+    height: 300px; 
+  }
+  
+  /* Make overlay text slightly smaller for phone screens */
+  .post .overlay h3 {
+    font-size: 18px;
+  }
 }

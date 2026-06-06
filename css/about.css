@@ -49,6 +49,7 @@
 .desc p:nth-of-type(3) {
   text-align: center;
 }
+
 /* --- Links & Icons --- */
 .email {
   color: #e0e0e0;
@@ -103,20 +104,46 @@
   filter: grayscale(0%) contrast(1);
 }
 
-/* --- Responsive for Mobile --- */
+/* ====================================================
+   MOBILE RESPONSIVENESS (Tablets & Phones)
+==================================================== */
+
+/* For Tablets & Smaller Laptops */
 @media (max-width: 900px) {
   .aboutme {
     grid-template-columns: 1fr;
-    text-align: center;
-    gap: 40px;
-    padding: 40px 20px;
+    gap: 60px;
+    padding: 40px 30px;
+    min-height: auto; /* Removes the vertical lock so content flows naturally */
   }
   
-  .desc p {
-    text-align: center; /* Center text only on phones */
+  .desc {
+    max-width: 600px; /* Allows text to stretch slightly wider on tablet */
   }
 
   .my-img {
     justify-content: center;
+    order: -1; /* Optional: Moves the image strictly ABOVE the text on mobile devices */
+  }
+}
+
+/* For Phones */
+@media (max-width: 768px) {
+  .aboutme {
+    padding: 20px 20px 60px 20px;
+    gap: 40px;
+  }
+  
+  .desc {
+    font-size: 14px; /* Scales down text slightly so it isn't overpowering */
+    letter-spacing: 0.5px;
+  }
+
+  .desc p {
+    text-align: center; /* Kills the justification to prevent ugly white-space rivers */
+  }
+
+  .my-img img {
+    max-width: 100%; /* Allows the image to elegantly fill the phone width */
   }
 }

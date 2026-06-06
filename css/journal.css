@@ -6,10 +6,9 @@
 }
 
 /* --- Background Grid --- */
-/* --- Background Grid --- */
 .journal-grid {
   display: grid;
-  /* CHANGED: Forces exactly 6 columns across the screen */
+  /* Forces exactly 6 columns across the desktop screen */
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
   padding: 0 40px 40px 40px;
@@ -17,17 +16,9 @@
 
 .journal-grid img {
   width: 100%;
-  /* CHANGED: Lowered height so the smaller photos keep a good aspect ratio */
   height: 200px; 
   object-fit: cover;
   filter: grayscale(80%) brightness(0.6); 
-}
-
-/* Optional: Make it responsive so it doesn't look completely crushed on mobile phones */
-@media (max-width: 900px) {
-  .journal-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 
 /* --- The Frosted Glass Blur Overlay --- */
@@ -62,4 +53,35 @@
   text-transform: uppercase;
   font-weight: normal;
   text-align: center;
+}
+
+/* ====================================================
+   MOBILE RESPONSIVENESS (Tablets & Phones)
+==================================================== */
+
+/* For Tablets & Smaller Laptops */
+@media (max-width: 900px) {
+  .journal-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 30px 30px 30px;
+  }
+}
+
+/* For Phones */
+@media (max-width: 768px) {
+  .journal-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns so photos don't look crushed */
+    gap: 10px; /* Tighter gaps for a smaller screen */
+    padding: 0 15px 20px 15px; /* Removes massive side padding */
+  }
+  
+  .journal-grid img {
+    height: 150px; /* Scales the images down so they stay proportional */
+  }
+
+  .blur-overlay h2 {
+    font-size: 18px; /* Slightly smaller text */
+    letter-spacing: 4px;
+    padding: 0 20px; /* Ensures text never touches the absolute edge of the phone */
+  }
 }

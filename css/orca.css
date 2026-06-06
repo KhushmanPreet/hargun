@@ -46,6 +46,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
+    gap: 20px; /* Added a gap just in case images touch */
 }
 
 .kytn-img {
@@ -53,6 +54,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
+    gap: 20px;
 }
 
 .spotify-embed {
@@ -67,7 +69,6 @@ img {
 
 /* ---------------------------------------------------
    RESPONSIVE VIDEO OVERRIDES 
-   (Ensures your MP4 and YouTube embeds don't break) 
 ---------------------------------------------------- */
 
 .main-vid {
@@ -78,9 +79,9 @@ img {
 }
 
 .main-vid video {
-    max-height: 600px; /* Matches your img rule above */
+    max-height: 600px; 
     width: auto;
-    pointer-events: none; /* Keeps the GIF illusion */
+    pointer-events: none; 
     box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -93,9 +94,72 @@ img {
 }
 
 .orca-vid iframe {
-    width: 80%; /* Keeps it contained nicely within the layout */
+    width: 80%; 
     max-width: 1000px;
-    aspect-ratio: 16 / 9; /* Widescreen ratio */
+    aspect-ratio: 16 / 9; 
     border: none;
     border-radius: 8px;
+}
+
+/* ====================================================
+   MOBILE RESPONSIVENESS (Tablets & Phones)
+==================================================== */
+
+/* For Tablets */
+@media (max-width: 900px) {
+  .title-text {
+      grid-template-columns: 1fr 1fr; /* Drops from 4 columns to 2 */
+      margin-left: 20px;
+  }
+  .project-thoughts {
+      width: 80%;
+  }
+  .spotify-embed {
+      width: 70%;
+  }
+  .orca-vid iframe {
+      width: 90%;
+  }
+}
+
+/* For Phones */
+@media (max-width: 768px) {
+  .title-text {
+      grid-template-columns: 1fr; /* Stacks all header text into a single column */
+      margin-left: 0;
+      padding: 0 20px;
+      gap: 1.5rem;
+  }
+
+  .sec-wrapper {
+      width: 100%;
+      padding: 50px 20px 0 20px; /* Reduces massive top padding */
+  }
+
+  .project-thoughts {
+      width: 100%; /* Text uses full width of phone screen */
+      margin-bottom: 30px;
+  }
+
+  .orca-imgs, .kytn-img {
+      grid-template-columns: 1fr; /* Stacks images vertically instead of side-by-side */
+      margin-top: 40px;
+  }
+
+  .main-vid video, img {
+      width: 100%; /* Ensures videos and images scale down to fit the phone */
+      height: auto;
+  }
+
+  .spotify-embed {
+      width: 100%; /* Makes Spotify player full width for easy tapping */
+  }
+
+  .orca-vid iframe {
+      width: 100%; 
+  }
+
+  .all-work-btn {
+      margin: 150px 0 100px 0; /* Reduces the massive empty scroll gap at the bottom */
+  }
 }
