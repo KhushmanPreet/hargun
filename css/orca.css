@@ -97,6 +97,26 @@ img {
     border-radius: 8px;
 }
 
+/* By default, assume we are on desktop. Hide the mobile-only image. */
+.mobile-image {
+    display: none !important;
+  }
+  
+  /* Existing styles for the video/image container */
+  .main-vid {
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+  }
+  
+  .main-vid video, .main-vid .mobile-image {
+      max-height: 600px; 
+      width: auto;
+      pointer-events: none; 
+      box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
+  }
+
 /* ====================================================
    MOBILE RESPONSIVENESS (Tablets & Phones)
 ==================================================== */
@@ -129,28 +149,22 @@ img {
       margin-top: 40px;
   }
 
-  /* Safely scales videos and images for mobile without them vanishing */
-  /* 1. Remove the flexbox on mobile so it doesn't squish the container */
-  .main-vid {
-    display: block; 
-    width: 100%;
+ 
+
+/* --- The Swapping Logic --- */
+
+  /* Hide the video on phones */
+  .desktop-video {
+    display: none !important;
 }
 
-/* 2. Force the video to take up space even before it loads */
-.main-vid video {
+/* Show and style the image on phones */
+.mobile-image {
+    display: block !important; /* Forces it to appear */
     width: 100%;
     height: auto;
-    
-    /* THE FIX: Forces the browser to keep a 300px box open no matter what */
-    min-height: 300px; 
-    
-    display: block; 
-    max-height: none;
-    
-    /* Optional: Adds a very dark grey background so if it delays loading, you see a sleek box instead of empty space */
-    background-color: #0a0a0a; 
+    max-height: none; 
 }
-
   .sec-wrapper img {
       width: 100%; 
       height: auto;
