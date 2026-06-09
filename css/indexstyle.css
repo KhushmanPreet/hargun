@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'Monument';
-  src: url(/font/helvetica-neue-5/HelveticaNeueLight.otf) format('truetype');
+  src: url(/font/solanel-font-family/SolanelTrial-Thin-BF641d049e0de32.otf) format('truetype');
 }
 
 * {
@@ -200,27 +200,43 @@ nav ul li a, #name {
   /* Stack the header cleanly */
   header {
     padding: 25px 20px;
-    flex-direction: column;
-    gap: 15px;
-    background: transparent; /* Ensures no weird color blocking */
-  }
-
-  /* Center the navigation links */
-  nav ul {
-    margin-right: 0;
-    display: flex;
+    display: grid;
     justify-content: center;
-    gap: 20px;
+    justify-items: stretch;
+    row-gap: 5px;
   }
 
+  /* Make HARGUN KAMBO large and perfectly spaced */
+  #name {
+    font-size: 26px; 
+    letter-spacing: 6px;
+    text-align: center;
+    margin-right: -6px; /* Matches the letter-spacing to keep it mathematically centered */
+  }
+
+  /* Force the navigation to take up the exact same width as the name above it */
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-between; 
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  /* Strip the desktop margins so the items can sit flush against the edges */
   nav ul li {
-    margin-right: 0; /* Remove default margin to use flex gap instead */
+    margin: 0; 
   }
 
-  nav ul li a, #name {
-    font-size: 15px; /* Slightly smaller text for mobile */
+  /* Shrink the links slightly so they fit cleanly under the name */
+  nav ul li a {
+    font-size: 11px; 
+    letter-spacing: 2px;
   }
-
   /* Expand tap zones for thumbs */
   .click-zone {
     width: 30vw; 
@@ -237,5 +253,9 @@ nav ul li a, #name {
   .slide img, .slide video {
     -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
+  }
+
+  .vignette {
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.85); /* Shrunk from 250px down to 80px */
   }
 }

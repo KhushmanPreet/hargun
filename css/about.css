@@ -144,6 +144,6 @@
   }
 
   .my-img img {
-    max-width: 100%; /* Allows the image to elegantly fill the phone width */
+    max-width: 70%; /* Allows the image to elegantly fill the phone width */
   }
 }

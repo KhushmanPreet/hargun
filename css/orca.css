@@ -1,35 +1,31 @@
 /* --- MAIN TYPOGRAPHY & LAYOUT --- */
+/* --- MAIN TYPOGRAPHY & LAYOUT --- */
 .title-text {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Pushes the flexbox to the left */
+    text-align: left; /* Aligns the text itself to the left */
+    margin-left: 50px; /* Gives it a clean editorial indent */
     margin-top: 80px;
+    margin-bottom: 20px;
 }
-
 .project-name {
     font-size: 36px;
+    letter-spacing: 2px;
 }
 
 .project-type {
-    margin-top: 5px;
-    font-size: 18px;
-}
-
-.project-labels span {
-    background-color: var(--primary);
+    margin-top: 10px;
+    font-size: 16px;
+    color: #a0a0a0; /* Slightly dims the sub-text for that high-end look */
 }
 
 img {
     max-height: 600px;
 }
 
-.project-thoughts {
-    width: 50%;
-}
-
 .sec-wrapper {
-    padding-top: 100px;
+    padding-top: 20px; /* Reduced since the giant text blocks are gone */
     margin: auto;
     width: 90%;
 }
@@ -46,7 +42,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
-    gap: 20px; /* Added a gap just in case images touch */
+    gap: 20px; 
 }
 
 .kytn-img {
@@ -64,7 +60,7 @@ img {
 
 .all-work-btn {
     margin: 300px 0;
-    text-align: center; /* Ensures the button centers cleanly in its wrapper */
+    text-align: center; 
 }
 
 /* ---------------------------------------------------
@@ -107,13 +103,6 @@ img {
 
 /* For Tablets */
 @media (max-width: 900px) {
-  .title-text {
-      grid-template-columns: 1fr 1fr; /* Drops from 4 columns to 2 */
-      margin-left: 20px;
-  }
-  .project-thoughts {
-      width: 80%;
-  }
   .spotify-embed {
       width: 70%;
   }
@@ -124,21 +113,15 @@ img {
 
 /* For Phones */
 @media (max-width: 768px) {
-  .title-text {
-      grid-template-columns: 1fr; /* Stacks all header text into a single column */
-      margin-left: 0;
-      padding: 0 20px;
-      gap: 1.5rem;
-  }
+    .title-text {
+        padding: 0 20px;
+        margin-left: 0; /* Removes the 50px desktop indent so it fits on a phone */
+        margin-top: 40px;
+    }
 
   .sec-wrapper {
       width: 100%;
-      padding: 50px 20px 0 20px; /* Reduces massive top padding */
-  }
-
-  .project-thoughts {
-      width: 100%; /* Text uses full width of phone screen */
-      margin-bottom: 30px;
+      padding: 30px 20px 0 20px; 
   }
 
   .orca-imgs, .kytn-img {
@@ -146,8 +129,16 @@ img {
       margin-top: 40px;
   }
 
-  .main-vid video, img {
-      width: 100%; /* Ensures videos and images scale down to fit the phone */
+  /* Safely scales videos and images for mobile without them vanishing */
+  .main-vid video {
+      width: 100%;
+      height: auto;
+      display: block; 
+      max-height: none; 
+  }
+
+  .sec-wrapper img {
+      width: 100%; 
       height: auto;
   }
 
@@ -160,6 +151,6 @@ img {
   }
 
   .all-work-btn {
-      margin: 150px 0 100px 0; /* Reduces the massive empty scroll gap at the bottom */
+      margin: 150px 0 100px 0; 
   }
 }

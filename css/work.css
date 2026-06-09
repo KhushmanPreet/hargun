@@ -54,18 +54,35 @@ button:active, button:hover, button.active {
 }
 
 /* --- Master Override: Kills all hidden scroll animations --- */
+/* --- Master Override & Centering --- */
 .post {
   position: relative;
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
   visibility: visible !important;
+  
+  /* NEW: This centers the tightly-wrapped photo inside the grid square */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* NEW: We anchor the overlay to the link itself, which tightly hugs the photo */
+.post a {
+  position: relative; 
+  display: flex;
+  max-width: 100%;
+  text-decoration: none;
 }
 
 .post img {
   display: block;
-  width: 100%;
-  height: 400px;
+  /* CHANGED: Swapped strict 100% width and 400px height for 'auto' so there is no empty space */
+  width: auto; 
+  max-width: 100%;
+  height: auto; 
+  max-height: 400px; /* Still restricts it from getting too tall */
   object-fit: contain;
   transition: transform 0.3s;
   
@@ -87,7 +104,7 @@ button:active, button:hover, button.active {
   background-color: rgba(255, 0, 0, 0.9);
   opacity: 0;
   transition: opacity 0.3s;
-  cursor: pointer; /* Overlay will show pointer hand on hover */
+  cursor: pointer;
 }
 
 img:hover {
