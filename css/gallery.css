@@ -46,7 +46,12 @@
   height: 100%;
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
-  pointer-events: none; /* Prevents hidden images from blocking clicks */
+  pointer-events: none; 
+  
+  /* THE FIX: Turns the item into a flexbox so we can perfectly center a shrunken image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gallery-item.active {
@@ -56,11 +61,16 @@
 
 .gallery-item img {
   display: block;
-  width: 100%;
-  height: 100%;
+  
+  /* THE FIX: Shrinks the maximum size so the photo leaves a 15% safe zone around the edges */
+  max-width: 85%;
+  max-height: 85%;
+  width: auto;
+  height: auto;
+  
   object-fit: contain;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4); /* Optional: Adds a very subtle shadow to separate the photo from the dark background */
 }
-
 /* --- NAV ARROWS (Global) --- */
 .nav-prev,
 .nav-next {
