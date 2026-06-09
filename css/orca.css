@@ -130,12 +130,26 @@ img {
   }
 
   /* Safely scales videos and images for mobile without them vanishing */
-  .main-vid video {
-      width: 100%;
-      height: auto;
-      display: block; 
-      max-height: none; 
-  }
+  /* 1. Remove the flexbox on mobile so it doesn't squish the container */
+  .main-vid {
+    display: block; 
+    width: 100%;
+}
+
+/* 2. Force the video to take up space even before it loads */
+.main-vid video {
+    width: 100%;
+    height: auto;
+    
+    /* THE FIX: Forces the browser to keep a 300px box open no matter what */
+    min-height: 300px; 
+    
+    display: block; 
+    max-height: none;
+    
+    /* Optional: Adds a very dark grey background so if it delays loading, you see a sleek box instead of empty space */
+    background-color: #0a0a0a; 
+}
 
   .sec-wrapper img {
       width: 100%; 
