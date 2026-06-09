@@ -252,7 +252,7 @@ nav ul li a, #name {
 
   /* Adjust carousel height and width for narrow phone screens */
   .carousel-container.projector-screen {
-    top: 50%;
+    top: 55%;
     height: 65vh;
     width: 95%;
   }

@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const applyFilter = () => {
         posts.forEach(function (post) {
           if (filter === 'all' || post.classList.contains(filter)) {
-            post.style.display = 'block';
+            post.style.display = "flex";
           } else {
             post.style.display = 'none';
           }
