@@ -135,7 +135,7 @@
   }
   
   .desc {
-    font-size: 10px; /* Scales down text slightly so it isn't overpowering */
+    font-size: 12px; /* Scales down text slightly so it isn't overpowering */
     letter-spacing: 0.5px;
   }
 
