@@ -159,12 +159,16 @@ img {
 }
 
 /* Show and style the image on phones */
+/* --- Locks the Orca mobile image to a safe size --- */
 .mobile-image {
-    display: block !important; /* Forces it to appear */
-    width: 100%;
-    height: auto;
-    max-height: none; 
-}
+    width: 100%;           /* Stops it from breaking off the sides of the screen */
+    max-width: 100%;
+    height: auto;          
+    max-height: 55vh;      /* Prevents it from getting too tall (matches your gallery size) */
+    object-fit: contain;   /* Ensures the whole artwork stays visible without stretching */
+    display: block;
+    margin: 0 auto;        /* Centers it perfectly */
+  }
   .sec-wrapper img {
       width: 100%; 
       height: auto;
