@@ -217,11 +217,11 @@ html {
 
   /* Move the close button slightly up and to the right on narrow phones */
   .close-gallery {
-    top: 130px;
+    top: 75px; /* CHANGED: Pulls it much higher up, right below your header */
     right: 20px;
     font-size: 25px;
+    z-index: 9999; /* Added a massive z-index just to guarantee it stays visually on top of everything */
   }
-
   /* Remove massive margins around the video section */
   .video-section {
     margin: 50px auto;

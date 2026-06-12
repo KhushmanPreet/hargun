@@ -13,13 +13,14 @@ body {
 
 /* --- Centered Sorting Buttons --- */
 /* --- Left-Aligned Sorting Buttons --- */
+/* --- Desktop Sorting Buttons --- */
 .headin {
   display: flex;
-  justify-content: flex-start; /* THE FIX: Pushes the whole block to the left */
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   margin-bottom: 40px;
-  padding-left: 45x; /* Aligns the buttons with the left edge of your photos */
+  padding-left: 40px; /* THE FIX: Pushes it back out to align with your photos */
 }
 
 .sortbuttons {
@@ -185,11 +186,13 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
   }
 
   /* Scale the images down so they don't take up the entire vertical screen */
+  /* --- Scale up the images for phone screens --- */
   .post .image-container, 
   .post img {
-    height: 400px; 
+    height: 450px; /* CHANGED: Increased from 300px. Tweak this number until it feels perfect! */
+    width: auto;
+    max-width: 100%; /* Keeps it from breaking off the sides of the screen */
   }
-  
   /* Make overlay text slightly smaller for phone screens */
   .post .overlay h3 {
     font-size: 18px;
