@@ -170,8 +170,8 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
   .sortbuttons {
     gap: 15px;
     flex-wrap: wrap;
-    justify-content: flex-start; /* THE FIX: Keeps them left-aligned on phones too */
-    padding: 0 5px; /* Matches the phone grid padding */
+    justify-content: center; /* THE FIX: Snaps them back to the center for phones */
+    padding: 0 5px; 
   }
   button {
     font-size: 13px; /* Slightly smaller text */
