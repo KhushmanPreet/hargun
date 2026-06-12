@@ -8,24 +8,28 @@
 }
 
 @font-face {
-  font-family: 'Monument';
+  font-family: 'HelveticaPro-Light';
   src: url(/font/font/HelveticaNowDisplay-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HelveticaPro-Medium';
+  /* Make sure this filename matches your exact medium font file */
+  src: url(/font/font/HelveticaNowDisplay-Medium.ttf) format('truetype');
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Monument', sans-serif;
-  /* Removed the custom cursor from here! */
+  font-family: 'HelveticaPro-Light', sans-serif;
 }
 
 body {
   background-color: #000000;
   color: #e0e0e0;
   height: 100%;
-  /* Moved the custom cursor here instead! */
- cursor: crosshair; 
+  cursor: crosshair; 
 }
 
 /* --- Home Page Specific --- */
@@ -44,6 +48,23 @@ header {
   justify-content: space-between;
   align-items: center;
   user-select: none;
+  background: transparent;
+}
+
+/* --- Desktop Hamburger (Hidden) --- */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  z-index: 4000; /* Keeps it above the menu overlay */
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 2px;
+  background-color: #e0e0e0;
+  display: block;
+  margin: 6px auto;
+  transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.4s;
 }
 
 nav ul {
@@ -56,36 +77,33 @@ nav ul li {
   margin-right: 20px;
 }
 
-nav ul li a, #name {
+/* Navbar fonts: Medium weight, no artificial bolding */
+nav ul li a, #name a {
+  font-family: 'HelveticaPro-Medium', sans-serif;
+  font-weight: 500; 
   font-size: 17px;
   color: #e0e0e0; 
   text-decoration: none;
-  font-weight: bold;
   transition: color 0.3s ease-in-out;
   cursor: pointer;
 }
 
-#name:hover, nav li:hover a {
+#name a:hover, nav li:hover a {
   color: var(--primary); 
 }
 
 #name a {
-    color: inherit; /* Inherits the text color of the parent element */
-    text-decoration: none; /* Removes the underline */
+    color: inherit;
+    text-decoration: none;
 }
 
-/* --- Raw Analog Effects (Made MORE Grungy) --- */
+/* --- Raw Analog Effects --- */
 .grain-overlay {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none;
-  
-  /* CHANGED: Moved from 50 to 5. It now sits behind the photos (which are z-index 10) */
   z-index: 5; 
-  
-  /* CHANGED: Lowered from 0.15 to 0.05 for a very subtle background texture */
   opacity: 0.05; 
-  
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
@@ -93,10 +111,7 @@ nav ul li a, #name {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none;
-  
-  /* CHANGED: Moved from 40 down to 6. It now sits behind the photos! */
   z-index: 6; 
-  
   box-shadow: inset 0 0 250px rgba(0,0,0,0.98);
 }
 
@@ -123,7 +138,7 @@ nav ul li a, #name {
 /* --- The Seamless Cinematic Screen --- */
 .carousel-container.projector-screen {
   position: absolute;
-  top: 55%;
+  top: 60%; /* Pushed down to visually balance with the header */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -150,8 +165,6 @@ nav ul li a, #name {
   height: 100%;
   object-fit: contain; 
   filter: contrast(1.1) grayscale(0.2) brightness(0.8); 
-  
-  /* Blended MORE: Solid only up to 25%, fully faded by 75% */
   -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 75%);
   mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 75%);
 }
@@ -188,7 +201,6 @@ nav ul li a, #name {
   100% { opacity: 0; transform: scale(1); }
 }
 
-/* Apply the focus pull ONLY when the slide becomes active */
 .slide.active img, .slide.active video {
   animation: focusPull 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
 }
@@ -196,63 +208,96 @@ nav ul li a, #name {
 /* ====================================================
    MOBILE RESPONSIVENESS (Phones & Small Tablets)
 ==================================================== */
-/* ====================================================
-   MOBILE RESPONSIVENESS (Phones & Small Tablets)
-==================================================== */
 @media (max-width: 768px) {
   
-  /* --- Unified Mobile Header (Applies safely to ALL pages) --- */
+  /* --- 1. The Mobile Header Base --- */
   header {
-    padding: 20px 15px;
+    position: relative; /* Crucial so we can overlap the nav on top of the name */
+    padding: 25px 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between; /* Name on left, Hamburger on right */
     align-items: center;
-    justify-content: center;
-    gap: 15px; 
     background: transparent;
   }
 
-  /* Bold, Centered Name */
   #name {
-    font-size: 24px; 
-    font-weight: 900; 
-    letter-spacing: 4px;
-    text-align: center;
-    margin-right: -4px; /* Balances the letter-spacing offset */
+    font-size: 18px; 
+    margin: 0;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
   }
 
-  /* Safe, Centered Navigation */
+  /* --- 2. Keep Your Hamburger Button --- */
+  .hamburger {
+    display: block;
+    /* Your previous line styles and animations remain completely active */
+  }
+
+  /* --- 3. The In-Place Navigation (Hidden) --- */
+  /* --- 3. The In-Place Navigation (Hidden) --- */
   nav {
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Moves the anchor to the exact center of the screen */
+    
+    /* Centers it horizontally and vertically, plus adds a 20px shift to the right for the sweeping animation */
+    transform: translate(calc(-50% + 20px), -50%); 
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
   }
 
   nav ul {
     display: flex;
-    justify-content: center; 
-    gap: 25px; 
+    flex-direction: row; 
+    gap: 15px; /* CHANGED: Reduced from 25px to tighten the grouping */
     margin: 0;
     padding: 0;
   }
 
-  nav ul li {
-    margin: 0; 
-  }
-
   nav ul li a {
-    font-size: 12px; 
+    font-size: 14px; /* Sized beautifully for a phone header */
     letter-spacing: 2px;
   }
 
+  /* ==============================================
+     4. THE SWAP ANIMATIONS (Triggered by JS) 
+  ============================================== */
+  
+  /* Fade out the name and push it slightly to the left */
+  .nav-active #name {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-25px);
+  }
+
+  /* Fade in the links and snap them into place */
+  /* Fade in the links and snap them into the exact dead-center */
+  .nav-active nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%); /* Replaces translateX and translateY to lock it center */
+  }
+
+  /* Your untouched X animation */
+  .nav-active .hamburger .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-active .hamburger .line:nth-child(2) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
   /* --- Home Page Cinematic Adjustments --- */
   
-  /* Expand tap zones for thumbs so it's easier to click next/prev */
+  /* Expand tap zones for thumbs */
   .click-zone {
     width: 30vw; 
   }
 
   /* Adjust carousel height and width for narrow phone screens */
   .carousel-container.projector-screen {
-    top: 55%;
+    top: 58%; /* Pushed down to balance the mobile header */
     height: 65vh;
     width: 95%;
   }
@@ -263,7 +308,7 @@ nav ul li a, #name {
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
   }
 
-  /* Reduce the heavy cinematic vignette so it doesn't swallow the phone screen */
+  /* Reduce the heavy cinematic vignette */
   .vignette {
     box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.85); 
   }

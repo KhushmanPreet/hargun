@@ -1,3 +1,15 @@
+// hambrger menu
+// --- PUT THIS AT THE VERY TOP OF SCRIPT.JS ---
+const hamburger = document.getElementById('hamburger');
+const header = document.querySelector('header');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        header.classList.toggle('nav-active');
+    });
+}
+// ... the rest of your javascript goes below this ...
+
 
 
 

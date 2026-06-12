@@ -7,17 +7,19 @@
 
 body {
   background-color: #000000; /* Added black background */
-  color: white;
+  color: #e0e0e0;
   min-height: 100vh; /* FIX: Prevents the page from cutting off bottom photos! */
 }
 
 /* --- Centered Sorting Buttons --- */
+/* --- Left-Aligned Sorting Buttons --- */
 .headin {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* THE FIX: Pushes the whole block to the left */
   align-items: center;
   width: 100%;
   margin-bottom: 40px;
+  padding-left: 50px; /* Aligns the buttons with the left edge of your photos */
 }
 
 .sortbuttons {
@@ -29,7 +31,7 @@ button {
   border: none;
   background: none;
   font-weight: bold;
-  color: white;
+  color: #e0e0e0;
   cursor: pointer; /* Because the GIF is on body, this pointer will actually work now! */
   font-size: 15px;
   transition: color 0.3s ease-in-out;
@@ -185,7 +187,7 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
   /* Scale the images down so they don't take up the entire vertical screen */
   .post .image-container, 
   .post img {
-    height: 300px; 
+    height: 400px; 
   }
   
   /* Make overlay text slightly smaller for phone screens */
