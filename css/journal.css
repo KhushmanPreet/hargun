@@ -1,14 +1,14 @@
-/* --- Journal Layout --- */
+
 .journal-container {
   position: relative;
   width: 100%;
   min-height: 100vh;
 }
 
-/* --- Background Grid --- */
+
 .journal-grid {
   display: grid;
-  /* Forces exactly 6 columns across the desktop screen */
+  
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
   padding: 0 40px 40px 40px;
@@ -21,7 +21,7 @@
   filter: grayscale(80%) brightness(0.6); 
 }
 
-/* --- The Frosted Glass Blur Overlay --- */
+
 .blur-overlay {
   position: fixed;
   top: 0;
@@ -29,23 +29,23 @@
   width: 100vw;
   height: 100vh;
   
-  /* The Magic: Blurs everything behind this div */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px); /* For Safari support */
   
-  /* A slight black tint to make the white text readable */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); 
+  
+  
   background-color: rgba(0, 0, 0, 0.3); 
   
-  /* Centering the text perfectly */
+  
   display: flex;
   justify-content: center;
   align-items: center;
   
-  /* Puts the blur over the photos, but UNDER the header (z-index 3000) */
+  
   z-index: 100; 
 }
 
-/* --- The Typography --- */
+
 .blur-overlay h2 {
   color: #e0e0e0;
   font-size: 24px;
@@ -55,11 +55,9 @@
   text-align: center;
 }
 
-/* ====================================================
-   MOBILE RESPONSIVENESS (Tablets & Phones)
-==================================================== */
 
-/* For Tablets & Smaller Laptops */
+
+
 @media (max-width: 900px) {
   .journal-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -67,21 +65,21 @@
   }
 }
 
-/* For Phones */
+
 @media (max-width: 768px) {
   .journal-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns so photos don't look crushed */
-    gap: 10px; /* Tighter gaps for a smaller screen */
-    padding: 0 15px 20px 15px; /* Removes massive side padding */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+    padding: 0 15px 20px 15px; 
   }
   
   .journal-grid img {
-    height: 150px; /* Scales the images down so they stay proportional */
+    height: 150px; 
   }
 
   .blur-overlay h2 {
-    font-size: 18px; /* Slightly smaller text */
+    font-size: 18px; 
     letter-spacing: 4px;
-    padding: 0 20px; /* Ensures text never touches the absolute edge of the phone */
+    padding: 0 20px; 
   }
 }

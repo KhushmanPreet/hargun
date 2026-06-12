@@ -2,25 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* CUSTOM CURSOR REMOVED FROM HERE */
+  
 }
 
 body {
-  background-color: #000000; /* Added black background */
+  background-color: #000000; 
   color: #e0e0e0;
-  min-height: 100vh; /* FIX: Prevents the page from cutting off bottom photos! */
+  min-height: 100vh; 
 }
 
-/* --- Centered Sorting Buttons --- */
-/* --- Left-Aligned Sorting Buttons --- */
-/* --- Desktop Sorting Buttons --- */
+
+
+
 .headin {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   margin-bottom: 40px;
-  padding-left: 40px; /* THE FIX: Pushes it back out to align with your photos */
+  padding-left: 40px; 
 }
 
 .sortbuttons {
@@ -33,7 +33,7 @@ button {
   background: none;
   font-weight: bold;
   color: #e0e0e0;
-  cursor: pointer; /* Because the GIF is on body, this pointer will actually work now! */
+  cursor: pointer; 
   font-size: 15px;
   transition: color 0.3s ease-in-out;
   text-transform: uppercase;
@@ -56,8 +56,8 @@ button:active, button:hover, button.active {
   align-items: center;
 }
 
-/* --- Master Override: Kills all hidden scroll animations --- */
-/* --- Master Override & Centering --- */
+
+
 .post {
   position: relative;
   opacity: 1 !important;
@@ -65,13 +65,13 @@ button:active, button:hover, button.active {
   animation: none !important;
   visibility: visible !important;
   
-  /* NEW: This centers the tightly-wrapped photo inside the grid square */
+  
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* NEW: We anchor the overlay to the link itself, which tightly hugs the photo */
+
 .post a {
   position: relative; 
   display: flex;
@@ -81,15 +81,15 @@ button:active, button:hover, button.active {
 
 .post img {
   display: block;
-  /* CHANGED: Swapped strict 100% width and 400px height for 'auto' so there is no empty space */
+  
   width: auto; 
   max-width: 100%;
   height: auto; 
-  max-height: 400px; /* Still restricts it from getting too tall */
+  max-height: 400px; 
   object-fit: contain;
   transition: transform 0.3s;
   
-  /* Force images to load instantly */
+  
   opacity: 1 !important; 
   transform: none !important;
   animation: none !important;
@@ -123,14 +123,14 @@ img:hover {
   font-size: 20px;
   text-align: center;
   margin: 0;
-  padding: 0 15px; /* Prevents text from hitting absolute edges on long titles */
+  padding: 0 15px; 
 }
 
 .post .image-container {
   position: relative;
   width: 100%;
   height: 400px;
-  /* Removed padding-bottom: 100% as it creates massive hidden overflow boxes */
+  
 }
 
 .post .image-container img {
@@ -146,54 +146,52 @@ img:hover {
   max-height: 100%;
 }
 
-/* --- Scrollbar Hiding --- */
-html { scrollbar-width: none; } /* Firefox */
-body { -ms-overflow-style: none; } /* IE and Edge */
-body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
 
-/* --- Seamless Glide Transition Settings --- */
+html { scrollbar-width: none; } 
+body { -ms-overflow-style: none; } 
+body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } 
+
+
 ::view-transition-group(*) {
   animation-duration: 0.6s;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ====================================================
-   MOBILE RESPONSIVENESS (Phones & Small Tablets)
-==================================================== */
+
 @media (max-width: 768px) {
-  /* Tighter margins for the top filtering section */
+  
   .headin {
     padding-left: 15px;
     margin-bottom: 20px;
   }
 
-  /* Wrap the sort buttons so they don't break off-screen if there are a lot of them */
+  
   .sortbuttons {
     gap: 15px;
     flex-wrap: wrap;
-    justify-content: center; /* THE FIX: Snaps them back to the center for phones */
+    justify-content: center; 
     padding: 0 5px; 
   }
   button {
-    font-size: 13px; /* Slightly smaller text */
+    font-size: 13px; 
   }
 
-  /* Fix the Grid: Forces a single column that spans 100% of the screen instead of rigid 400px */
+  
   .projects {
     grid-template-columns: 1fr;
     padding: 30px 15px 30px 15px;
-    gap: 30px; /* Slightly larger gap between stacked projects to give them breathing room */
+    gap: 30px; 
   }
 
-  /* Scale the images down so they don't take up the entire vertical screen */
-  /* --- Scale up the images for phone screens --- */
+  
+  
   .post .image-container, 
   .post img {
-    height: 450px; /* CHANGED: Increased from 300px. Tweak this number until it feels perfect! */
+    height: 450px; 
     width: auto;
-    max-width: 100%; /* Keeps it from breaking off the sides of the screen */
+    max-width: 100%; 
   }
-  /* Make overlay text slightly smaller for phone screens */
+  
   .post .overlay h3 {
     font-size: 18px;
   }

@@ -1,11 +1,11 @@
-/* --- MAIN TYPOGRAPHY & LAYOUT --- */
-/* --- MAIN TYPOGRAPHY & LAYOUT --- */
+
+
 .title-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Pushes the flexbox to the left */
-    text-align: left; /* Aligns the text itself to the left */
-    margin-left: 50px; /* Gives it a clean editorial indent */
+    align-items: flex-start; 
+    text-align: left; 
+    margin-left: 50px; 
     margin-top: 80px;
     margin-bottom: 20px;
 }
@@ -17,7 +17,7 @@
 .project-type {
     margin-top: 10px;
     font-size: 16px;
-    color: #a0a0a0; /* Slightly dims the sub-text for that high-end look */
+    color: #a0a0a0; 
 }
 
 img {
@@ -25,12 +25,12 @@ img {
 }
 
 .sec-wrapper {
-    padding-top: 20px; /* Reduced since the giant text blocks are gone */
+    padding-top: 20px; 
     margin: auto;
     width: 90%;
 }
 
-/* --- IMAGE CONTAINERS --- */
+
 .main-img {
     margin-bottom: 50px;
     display: flex;
@@ -63,9 +63,7 @@ img {
     text-align: center; 
 }
 
-/* ---------------------------------------------------
-   RESPONSIVE VIDEO OVERRIDES 
----------------------------------------------------- */
+
 
 .main-vid {
     margin-bottom: 50px;
@@ -97,12 +95,12 @@ img {
     border-radius: 8px;
 }
 
-/* By default, assume we are on desktop. Hide the mobile-only image. */
+
 .mobile-image {
     display: none !important;
   }
   
-  /* Existing styles for the video/image container */
+  
   .main-vid {
       margin-bottom: 50px;
       display: flex;
@@ -117,11 +115,9 @@ img {
       box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.4);
   }
 
-/* ====================================================
-   MOBILE RESPONSIVENESS (Tablets & Phones)
-==================================================== */
 
-/* For Tablets */
+
+
 @media (max-width: 900px) {
   .spotify-embed {
       width: 70%;
@@ -131,11 +127,11 @@ img {
   }
 }
 
-/* For Phones */
+
 @media (max-width: 768px) {
     .title-text {
         padding: 0 20px;
-        margin-left: 0; /* Removes the 50px desktop indent so it fits on a phone */
+        margin-left: 0; 
         margin-top: 40px;
     }
 
@@ -145,22 +141,22 @@ img {
   }
 
   .orca-imgs, .kytn-img {
-      grid-template-columns: 1fr; /* Stacks images vertically instead of side-by-side */
+      grid-template-columns: 1fr; 
       margin-top: 40px;
   }
 
  
 
-/* --- The Swapping Logic --- */
 
-  /* Hide the video on phones */
+
+  
   .desktop-video {
     display: none !important;
 }
 
-/* Show and style the image on phones */
-/* --- Locks the Orca mobile image to a safe size --- */
-/* --- Locks the Orca mobile image to a safe size AND forces it visible --- */
+
+
+
 .mobile-image {
     width: 100% !important;
     max-width: 100% !important;
@@ -168,7 +164,7 @@ img {
     max-height: 55vh !important;
     object-fit: contain !important;
     
-    /* THE FIX: Forces it to be visible and ignores any hidden opacities */
+    
     display: block !important;
     margin: 0 auto !important;
     opacity: 1 !important;
@@ -180,7 +176,7 @@ img {
   }
 
   .spotify-embed {
-      width: 100%; /* Makes Spotify player full width for easy tapping */
+      width: 100%; 
   }
 
   .orca-vid iframe {

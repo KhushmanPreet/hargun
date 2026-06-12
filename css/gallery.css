@@ -12,7 +12,7 @@
   margin-top: 40px;
 }
 
-/* --- THE CROSS (CLOSE) BUTTON --- */
+
 .close-gallery {
   position: absolute;
   top: 120px; 
@@ -28,11 +28,11 @@
   transform: scale(1.1);
 }
 
-/* --- THE MAIN GALLERY VIEWER --- */
+
 .gallery {
   position: relative;
   width: 100%;
-  height: 65vh; /* Scales beautifully based on screen height */
+  height: 65vh; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,7 @@
   transition: opacity 0.4s ease-in-out;
   pointer-events: none; 
   
-  /* THE FIX: Turns the item into a flexbox so we can perfectly center a shrunken image */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,16 +62,16 @@
 .gallery-item img {
   display: block;
   
-  /* THE FIX: Shrinks the maximum size so the photo leaves a 15% safe zone around the edges */
+  
   max-width: 85%;
   max-height: 85%;
   width: auto;
   height: auto;
   
   object-fit: contain;
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4); /* Optional: Adds a very subtle shadow to separate the photo from the dark background */
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4); 
 }
-/* --- NAV ARROWS (Global) --- */
+
 .nav-prev,
 .nav-next {
   position: absolute;
@@ -91,24 +91,24 @@
 
 .nav-prev:hover, .nav-next:hover { color: var(--primary, red); }
 
-/* --- THE 5-ITEM THUMBNAIL SLIDER --- */
+
 .thumbnail-window {
-  /* This width perfectly fits 5 thumbnails (60px each + 15px gaps) */
+  
   width: 360px; 
   margin: 30px auto 0 auto;
-  overflow: hidden; /* Hides the rest of the film strip */
+  overflow: hidden; 
   position: relative;
 }
 
 .thumbnail-track {
   display: flex;
   gap: 15px;
-  /* This allows the javascript to smoothly slide the strip */
+  
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .thumbnail-item {
-  flex-shrink: 0; /* Prevents thumbnails from squishing */
+  flex-shrink: 0; 
   width: 60px;
   height: 60px;
   object-fit: cover;
@@ -125,7 +125,7 @@
   opacity: 0.8;
 }
 
-/* --- YOUTUBE EMBED PLAYER --- */
+
 .video-section {
   width: 90%; 
   max-width: 900px; 
@@ -141,12 +141,12 @@
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); 
 }
 
-/* --- SMOOTH SCROLLING --- */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* --- BOUNCING DOWN ARROW --- */
+
 .scroll-down-arrow {
   display: block;
   text-align: center;
@@ -168,12 +168,10 @@ html {
   60% { transform: translateY(-7px); }
 }
 
-/* ====================================================
-   MOBILE RESPONSIVENESS (Tablets & Phones)
-==================================================== */
+
 
 @media (max-width: 900px) {
-  /* Push the close button further down so it clears the stacked mobile header */
+  
   .close-gallery {
     top: 160px; 
     right: 30px;
@@ -181,50 +179,50 @@ html {
 }
 
 @media (max-width: 768px) {
-  /* Reduce the massive gap at the top on small screens */
+  
   .gallery-container {
     margin-top: 10px; 
   }
 
-  /* Make the main viewer slightly shorter to ensure thumbnails stay above the fold */
+  
   .gallery {
     height: 55vh; 
   }
 
-  /* Push arrows all the way to the edge so they don't cover the photo's subject */
+  
   .nav-prev { left: 2%; }
   .nav-next { right: 2%; }
   
-  /* Shrink the arrows slightly so they aren't overwhelming */
+  
   .nav-prev, .nav-next {
     font-size: 28px;
   }
 
-  /* Scale down the thumbnail slider to prevent horizontal screen breaking */
+  
   .thumbnail-window {
-    width: 290px; /* Perfectly fits 5 smaller thumbnails */
+    width: 290px; 
     margin-top: 15px;
   }
 
   .thumbnail-track {
-    gap: 10px; /* Tighter gaps */
+    gap: 10px; 
   }
 
   .thumbnail-item {
-    width: 50px; /* Scaled down from 60px */
+    width: 50px; 
     height: 50px;
   }
 
-  /* Move the close button slightly up and to the right on narrow phones */
+  
   .close-gallery {
-    top: 75px; /* CHANGED: Pulls it much higher up, right below your header */
+    top: 75px; 
     right: 20px;
     font-size: 25px;
-    z-index: 9999; /* Added a massive z-index just to guarantee it stays visually on top of everything */
+    z-index: 9999; 
   }
-  /* Remove massive margins around the video section */
+  
   .video-section {
     margin: 50px auto;
-    width: 95%; /* Make the video stretch wider on a small phone */
+    width: 95%; 
   }
 }

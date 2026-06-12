@@ -1,5 +1,5 @@
-// hambrger menu
-// --- PUT THIS AT THE VERY TOP OF SCRIPT.JS ---
+
+
 const hamburger = document.getElementById('hamburger');
 const header = document.querySelector('header');
 
@@ -8,18 +8,18 @@ if (hamburger) {
         header.classList.toggle('nav-active');
     });
 }
-// ... the rest of your javascript goes below this ...
 
 
 
 
 
 
-    // JavaScript code for the image carousel
+
+    
     document.addEventListener('DOMContentLoaded', () => {
       const slides = document.querySelectorAll('.slide');
-      const leak = document.getElementById('leak');   // The Orange Flash
-      const leak2 = document.getElementById('leak2'); // The Red Flash
+      const leak = document.getElementById('leak');   
+      const leak2 = document.getElementById('leak2'); 
       const screen = document.querySelector('.projector-screen');
       let currentIndex = 0;
       let isAnimating = false;
@@ -29,48 +29,48 @@ if (hamburger) {
           if (isAnimating) return; 
           isAnimating = true;
   
-          // --- THE RANDOMIZER ---
-          const diceRoll = Math.random(); // Generates a number between 0.0 and 1.0
+          
+          const diceRoll = Math.random(); 
           let showOrange = false;
           let showRed = false;
   
           if (diceRoll < 0.33) {
-              showOrange = true; // 33% chance: Only Orange
+              showOrange = true; 
           } else if (diceRoll < 0.66) {
-              showRed = true;    // 33% chance: Only Red
+              showRed = true;    
           } else {
               showOrange = true;
-              showRed = true;    // 34% chance: Both together!
+              showRed = true;    
           }
   
-          // 1. Trigger Orange Flash (if chosen)
+          
           if (showOrange) {
               leak.classList.remove('flash-anim');
               void leak.offsetWidth; 
               leak.classList.add('flash-anim');
           }
   
-          // 2. Trigger Red Flash (if chosen)
+          
           if (showRed) {
               leak2.classList.remove('flash-anim-2');
               void leak2.offsetWidth; 
               leak2.classList.add('flash-anim-2');
           }
   
-          // 3. Snap slides halfway through the flash window
+          
           setTimeout(() => {
               slides[currentIndex].classList.remove('active');
               currentIndex = newIndex;
               slides[currentIndex].classList.add('active');
           }, 100); 
   
-          // 4. Unlock interaction
+          
           setTimeout(() => {
               isAnimating = false;
           }, 300); 
       }
   
-      // --- Navigation Logic ---
+      
       function nextSlide() {
           let nextIndex = (currentIndex + 1) % slides.length; 
           triggerSlideChange(nextIndex);
@@ -86,7 +86,7 @@ if (hamburger) {
           autoTimer = setInterval(nextSlide, 2500); 
       }
   
-      // --- Click & Keyboard Events ---
+      
       document.getElementById('btn-next').addEventListener('click', () => {
           nextSlide();
           startTimer(); 
@@ -112,13 +112,13 @@ if (hamburger) {
           }
       });
   
-      // Start the auto-play timer on load
+      
       startTimer();
   });
 
 
   
-// work.html
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   if (posts.length === 0) return; 
 
-  // --- THE MAGIC: Give each photo a unique tracking name ---
+  
   posts.forEach((post, index) => {
     post.style.viewTransitionName = `photo-${index}`;
   });
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
 
-        // Update active button color
+        
         buttons.forEach(function (btn) {
           if (btn === button) {
             btn.classList.add('active');
@@ -155,11 +155,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       };
 
-      // --- Trigger the Seamless Glide ---
+      
       if (document.startViewTransition) {
         document.startViewTransition(applyFilter);
       } else {
-        // Fallback for older browsers
+        
         applyFilter(); 
       }
       
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// gallery.css
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const galleryItems = document.querySelectorAll('.gallery-item');
@@ -178,40 +178,40 @@ document.addEventListener('DOMContentLoaded', function () {
   const thumbTrack = document.querySelector('.thumbnail-track');
   const thumbWindow = document.querySelector('.thumbnail-window');
   
-  if (galleryItems.length === 0) return; // Only run on gallery page
+  if (galleryItems.length === 0) return; 
 
   let currentImageIndex = 0;
 
   function showImage(index) {
-    // 1. Swap main images
+    
     galleryItems.forEach((item, i) => {
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
 
-    // 2. Swap thumbnail opacities
+    
     thumbnails.forEach((item, i) => {
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
 
-    // 3. The Magic: Slide the film strip to center the active thumbnail
+    
     if (thumbTrack && thumbWindow) {
       const activeThumb = thumbnails[index];
       
-      // Math to find the exact center
+      
       const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
       const windowCenter = thumbWindow.offsetWidth / 2;
       
-      // Calculate how far to push the track left
+      
       let slideAmount = thumbCenter - windowCenter;
       
-      // Stop the track from sliding too far at the very beginning or end
+      
       const maxSlide = thumbTrack.scrollWidth - thumbWindow.offsetWidth;
       if (slideAmount < 0) slideAmount = 0;
       if (slideAmount > maxSlide) slideAmount = maxSlide;
 
-      // Apply the slide!
+      
       thumbTrack.style.transform = `translateX(-${slideAmount}px)`;
     }
   }
@@ -226,14 +226,14 @@ document.addEventListener('DOMContentLoaded', function () {
     showImage(currentImageIndex);
   }
 
-  // Hook up the global next/prev buttons
+  
   const prevButton = document.querySelector('.nav-prev');
   const nextButton = document.querySelector('.nav-next');
 
   if (prevButton) prevButton.addEventListener('click', () => navigate(-1));
   if (nextButton) nextButton.addEventListener('click', () => navigate(1));
 
-  // Hook up clicking individual thumbnails
+  
   thumbnails.forEach(function (item, index) {
     item.addEventListener('click', function () {
       currentImageIndex = index;
@@ -241,15 +241,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Run once on load to lock in the starting position
+  
   showImage(0);
 });
-// kjournal
+
 
 const projects = {
   project1: {
     title: "Urban Silence",
-    // CHECK THESE PATHS! Make sure these files actually exist in your folder
+    
     images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"] 
   },
   project2: {
@@ -257,7 +257,7 @@ const projects = {
     images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"]
   }, project3: {
     title: "Urban Silence",
-    // CHECK THESE PATHS! Make sure these files actually exist in your folder
+    
     images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"] 
   }
 }
@@ -265,9 +265,9 @@ let currentProjectKey = "project1";
 let pageIndex = 0;
 let isJournalStarted = false;
 
-/* --- INITIALIZATION --- */
+
 window.onload = () => {
-  // 1. Generate the Menu Items
+  
   const menuList = document.getElementById('menu-list');
   menuList.innerHTML = "";
   
@@ -279,12 +279,12 @@ window.onload = () => {
     menuList.appendChild(li);
   });
 
-  // 2. Setup Interactions
+  
   document.getElementById('bookmark-container').onclick = toggleMenu;
   document.getElementById('nav-forward').onclick = nextPage;
 };
 
-/* --- CORE FUNCTIONS --- */
+
 
 function startJournal() {
   const startScreen = document.getElementById('start-screen');
@@ -330,7 +330,7 @@ function renderPage() {
   setTimeout(() => {
     stage.innerHTML = "";
     
-    // Page 0 = Single Cover. Others = Pairs.
+    
     if (pageIndex === 0) {
       stage.className = "photo-background single";
       stage.innerHTML = `<img src="${images[0]}" class="album-img">`;
@@ -359,7 +359,7 @@ function nextPage() {
     pageIndex++;
     renderPage();
   } else {
-    // Loop back to start of THIS project
+    
     pageIndex = 0;
     renderPage();
   }

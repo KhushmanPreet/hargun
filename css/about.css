@@ -1,7 +1,7 @@
-/* --- Dexter Navy / Editorial Minimalist Style --- */
+
 
 .aboutme {
-  /* Uses remaining screen height under header */
+  
   min-height: 80vh; 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -12,17 +12,17 @@
   gap: 80px;
 }
 
-/* --- Typography & Text Layout --- */
+
 .desc {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-transform: uppercase; 
-  font-size: 16px; /* Bumped up slightly for impact */
+  font-size: 16px; 
   line-height: 1.8;
   letter-spacing: 1px;
   
-  /* THE MAGIC BOX: We restrict the width so the text has to stack tightly */
+  
   max-width: 420px; 
   margin: 0 auto; 
 }
@@ -30,14 +30,14 @@
 .desc p {
   color: #e0e0e0;
   
-  /* Forces the left and right edges to be perfectly flat */
+  
   text-align: justify; 
   hyphens: auto; 
   
   margin-bottom: 25px;
 }
 
-/* Center the + sign */
+
 .desc p.divider {
   color: var(--primary, red);
   font-weight: bold;
@@ -45,12 +45,12 @@
   margin-bottom: 25px;
 }
 
-/* Center the Contact line */
+
 .desc p:nth-of-type(3) {
   text-align: center;
 }
 
-/* --- Links & Icons --- */
+
 .email {
   color: #e0e0e0;
   text-decoration: none;
@@ -64,7 +64,7 @@
   border-bottom: 1px solid var(--primary, red);
 }
 
-/* Center the Instagram logo */
+
 .logo {
   margin-top: 10px;
   font-size: 20px;
@@ -81,7 +81,7 @@
   color: var(--primary, red);
 }
 
-/* --- Image: Raw & Brutalist --- */
+
 .my-img {
   display: flex;
   justify-content: flex-end;
@@ -92,10 +92,10 @@
   max-width: 400px;
   height: auto;
   object-fit: cover;
-  /* Dexter Navy doesn't do soft rounded corners. Keep it sharp. */
+  
   border-radius: 0; 
   
-  /* Optional Analog Vibe: Grayscale by default, color on hover */
+  
   filter: grayscale(100%) contrast(1.1);
   transition: filter 0.5s ease;
 }
@@ -104,30 +104,28 @@
   filter: grayscale(0%) contrast(1);
 }
 
-/* ====================================================
-   MOBILE RESPONSIVENESS (Tablets & Phones)
-==================================================== */
 
-/* For Tablets & Smaller Laptops */
+
+
 @media (max-width: 900px) {
   .aboutme {
     grid-template-columns: 1fr;
     gap: 60px;
     padding: 40px 30px;
-    min-height: auto; /* Removes the vertical lock so content flows naturally */
+    min-height: auto; 
   }
   
   .desc {
-    max-width: 600px; /* Allows text to stretch slightly wider on tablet */
+    max-width: 600px; 
   }
 
   .my-img {
     justify-content: center;
-    order: -1; /* Optional: Moves the image strictly ABOVE the text on mobile devices */
+    order: -1; 
   }
 }
 
-/* For Phones */
+
 @media (max-width: 768px) {
   .aboutme {
     padding: 20px 20px 60px 20px;
@@ -135,15 +133,15 @@
   }
   
   .desc {
-    font-size: 13px; /* Scales down text slightly so it isn't overpowering */
+    font-size: 13px; 
     letter-spacing: 0.5px;
   }
 
   .desc p {
-    text-align: center; /* Kills the justification to prevent ugly white-space rivers */
+    text-align: center; 
   }
 
   .my-img img {
-    max-width: 70%; /* Allows the image to elegantly fill the phone width */
+    max-width: 70%; 
   }
 }
