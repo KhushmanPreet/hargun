@@ -19,7 +19,7 @@ body {
   align-items: center;
   width: 100%;
   margin-bottom: 40px;
-  padding-left: 40px; /* Aligns the buttons with the left edge of your photos */
+  padding-left: 45x; /* Aligns the buttons with the left edge of your photos */
 }
 
 .sortbuttons {
@@ -162,6 +162,7 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Ch
 @media (max-width: 768px) {
   /* Tighter margins for the top filtering section */
   .headin {
+    padding-left: 15px;
     margin-bottom: 20px;
   }
 
