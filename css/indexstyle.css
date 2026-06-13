@@ -43,7 +43,7 @@ header {
   top: 0;
   z-index: 3000;
   width: 100%;
-  padding: 40px;
+  padding:  20px 40px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
