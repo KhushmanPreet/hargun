@@ -34,7 +34,7 @@ button {
   font-weight: bold;
   color: #e0e0e0;
   cursor: pointer; 
-  font-size: 15px;
+  font-size: 13px;
   transition: color 0.3s ease-in-out;
   text-transform: uppercase;
 }
@@ -161,19 +161,20 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; }
 @media (max-width: 768px) {
   
   .headin {
-    padding-left: 15px;
-    margin-bottom: 20px;
+    margin-top: 40px; /* CHANGED: Increases the gap at the top just for phones */
+    padding: 0;       /* CHANGED: Strips away the desktop left-padding so it can mathematically center */
+    justify-content: center; /* Forces the flexbox to center */
   }
 
-  
+  /* 2. The Buttons: Keeps them centered if they wrap to a second line */
   .sortbuttons {
     gap: 15px;
     flex-wrap: wrap;
     justify-content: center; 
-    padding: 0 5px; 
+    padding: 0; /* Keeps the spacing equal on left and right */
   }
   button {
-    font-size: 13px; 
+    font-size: 15px; 
   }
 
   
