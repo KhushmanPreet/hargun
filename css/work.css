@@ -164,7 +164,8 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; }
     margin-top: 40px; /* CHANGED: Increases the gap at the top just for phones */
     padding: 0;       /* CHANGED: Strips away the desktop left-padding so it can mathematically center */
     justify-content: center; /* Forces the flexbox to center */
-  }
+    margin-bottom: 30px;
+    }
 
   /* 2. The Buttons: Keeps them centered if they wrap to a second line */
   .sortbuttons {
