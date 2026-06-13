@@ -174,7 +174,7 @@ body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; }
     padding: 0; /* Keeps the spacing equal on left and right */
   }
   button {
-    font-size: 15px; 
+    font-size: 13px; 
   }
 
   
