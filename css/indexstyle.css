@@ -81,7 +81,7 @@ nav ul li {
 nav ul li a, #name a {
   font-family: 'HelveticaPro-Medium', sans-serif;
   font-weight: 500; 
-  font-size: 17px;
+  font-size: 20px;
   color: #e0e0e0; 
   text-decoration: none;
   transition: color 0.3s ease-in-out;
@@ -303,7 +303,7 @@ nav ul li a, #name a {
 
   
   .carousel-container.projector-screen {
-    top: 58%; 
+    top: 53%; 
     height: 65vh;
     width: 95%;
   }
