@@ -250,15 +250,15 @@ const projects = {
   project1: {
     title: "Urban Silence",
     
-    images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"] 
+    images: ["/allProject/jewjournal/downscale1.webp", "/allProject/jewjournal/downscale2.webp", "/allProject/jewjournal/refine1.webp", "/allProject/jewjournal/downscale1.webp", "/allProject/jewjournal/downscale2.webp", "/allProject/jewjournal/downscale3.webp"] 
   },
   project2: {
     title: "Neon Nights",
-    images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"]
+    images: ["/allProject/jewjournal/downscale1.webp", "/allProject/jewjournal/downscale2.webp", "/allProject/jewjournal/refine1.webp", "/allProject/jewjournal/downscale1.webp", "/allProject/jewjournal/downscale2.webp", "/allProject/jewjournal/downscale3.webp"]
   }, project3: {
     title: "Urban Silence",
     
-    images: ["/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/refine1.jpg", "/allProject/jewjournal/downscale1.jpg", "/allProject/jewjournal/downscale2.jpg", "/allProject/jewjournal/downscale3.jpg"] 
+    images: ["/allProject/jewjournal/downscale1.webp", "/allProject/jewjournal/downscale2.webp", "/allProject/jewjournal/refine1.webp", "/allProject/jewjournal/downscale1.webp", "/allProject/jewjournal/downscale2.webp", "/allProject/jewjournal/downscale3.webp"] 
   }
 }
 let currentProjectKey = "project1";
