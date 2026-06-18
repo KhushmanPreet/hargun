@@ -181,58 +181,32 @@ document.addEventListener('DOMContentLoaded', function () {
   if (galleryItems.length === 0) return; 
 
   let currentImageIndex = 0;
-  let isGalleryAnimating = false; // THE FIX 1: Creates a lock for rapid clicks
-  const preloadedImages = new Set();
-
-  function getSlideSrc(index) {
-    const slide = galleryItems[index];
-    const image = slide && slide.querySelector('img');
-    return image ? image.getAttribute('src') : null;
-  }
-
-  function preloadSlide(index) {
-    const src = getSlideSrc(index);
-    if (!src || preloadedImages.has(src)) return;
-
-    const image = new Image();
-    image.src = src;
-    preloadedImages.add(src);
-  }
-
-  function preloadNearbySlides(index) {
-    const lastIndex = galleryItems.length - 1;
-    const previousIndex = index === 0 ? lastIndex : index - 1;
-    const nextIndex = index === lastIndex ? 0 : index + 1;
-
-    preloadSlide(index);
-    preloadSlide(previousIndex);
-    preloadSlide(nextIndex);
-  }
+  let isGalleryAnimating = false; 
 
   function showImage(index) {
-    
+    // Swap the main image
     galleryItems.forEach((item, i) => {
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
 
+    // Swap the thumbnails
     thumbnails.forEach((item, i) => {
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
 
+    // Glide the thumbnail track
     if (thumbTrack && thumbWindow && thumbnails.length) {
       const activeThumb = thumbnails[index];
       if (activeThumb) {
-        // We let the browser breathe for 10ms before calculating math
-        // This stops it from calculating while mid-transition
         setTimeout(() => {
             const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
             const windowCenter = thumbWindow.offsetWidth / 2;
             
             let slideAmount = thumbCenter - windowCenter;
-            
             const maxSlide = thumbTrack.scrollWidth - thumbWindow.offsetWidth;
+            
             if (slideAmount < 0) slideAmount = 0;
             if (slideAmount > maxSlide) slideAmount = maxSlide;
 
@@ -240,17 +214,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 10);
       }
     }
-
-    preloadNearbySlides(index);
   }
 
   function navigate(direction) {
-    // THE FIX 2: If the animation is running, ignore the click so it doesn't crash!
     if (isGalleryAnimating) return; 
     isGalleryAnimating = true;
 
     currentImageIndex += direction;
     
+    // Looping logic
     if (currentImageIndex < 0) {
       currentImageIndex = galleryItems.length - 1;
     } else if (currentImageIndex >= galleryItems.length) {
@@ -259,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     showImage(currentImageIndex);
 
-    // THE FIX 3: Unlocks the clicker after 400ms (matching your CSS transition speed)
     setTimeout(() => {
         isGalleryAnimating = false;
     }, 400); 
@@ -273,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   thumbnails.forEach(function (item, index) {
     item.addEventListener('click', function () {
-      if (isGalleryAnimating) return; // Prevent thumbnail spamming
+      if (isGalleryAnimating) return; 
       isGalleryAnimating = true;
       
       currentImageIndex = index;

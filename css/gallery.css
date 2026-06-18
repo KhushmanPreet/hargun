@@ -103,8 +103,10 @@
 .thumbnail-track {
   display: flex;
   gap: 15px;
-  
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  
+  /* ADD THIS: Forces the phone's GPU to handle the sliding animation */
+  will-change: transform; 
 }
 
 .thumbnail-item {
