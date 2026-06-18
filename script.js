@@ -112,7 +112,7 @@ if (hamburger) {
           }
       });
   
-      
+      preloadNearbySlides(0);
       startTimer();
   });
 
@@ -181,6 +181,32 @@ document.addEventListener('DOMContentLoaded', function () {
   if (galleryItems.length === 0) return; 
 
   let currentImageIndex = 0;
+  const preloadedImages = new Set();
+
+  function getSlideSrc(index) {
+    const slide = galleryItems[index];
+    const image = slide && slide.querySelector('img');
+    return image ? image.getAttribute('src') : null;
+  }
+
+  function preloadSlide(index) {
+    const src = getSlideSrc(index);
+    if (!src || preloadedImages.has(src)) return;
+
+    const image = new Image();
+    image.src = src;
+    preloadedImages.add(src);
+  }
+
+  function preloadNearbySlides(index) {
+    const lastIndex = galleryItems.length - 1;
+    const previousIndex = index === 0 ? lastIndex : index - 1;
+    const nextIndex = index === lastIndex ? 0 : index + 1;
+
+    preloadSlide(index);
+    preloadSlide(previousIndex);
+    preloadSlide(nextIndex);
+  }
 
   function showImage(index) {
     
@@ -196,24 +222,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     
-    if (thumbTrack && thumbWindow) {
+    if (thumbTrack && thumbWindow && thumbnails.length) {
       const activeThumb = thumbnails[index];
-      
-      
-      const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
-      const windowCenter = thumbWindow.offsetWidth / 2;
-      
-      
-      let slideAmount = thumbCenter - windowCenter;
-      
-      
-      const maxSlide = thumbTrack.scrollWidth - thumbWindow.offsetWidth;
-      if (slideAmount < 0) slideAmount = 0;
-      if (slideAmount > maxSlide) slideAmount = maxSlide;
+      if (activeThumb) {
+        const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
+        const windowCenter = thumbWindow.offsetWidth / 2;
+        
+        let slideAmount = thumbCenter - windowCenter;
+        
+        const maxSlide = thumbTrack.scrollWidth - thumbWindow.offsetWidth;
+        if (slideAmount < 0) slideAmount = 0;
+        if (slideAmount > maxSlide) slideAmount = maxSlide;
 
-      
-      thumbTrack.style.transform = `translateX(-${slideAmount}px)`;
+        thumbTrack.style.transform = `translateX(-${slideAmount}px)`;
+      }
     }
+
+    preloadNearbySlides(index);
   }
 
   function navigate(direction) {
