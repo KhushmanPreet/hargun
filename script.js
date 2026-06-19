@@ -184,8 +184,21 @@ document.addEventListener('DOMContentLoaded', function () {
   let isGalleryAnimating = false; 
 
   function showImage(index) {
-    // Swap the main image
+    
+    // --- THE iOS MEMORY FIX ---
     galleryItems.forEach((item, i) => {
+      const img = item.querySelector('img');
+      
+      // If this is the photo we are viewing, OR the very next photo in line...
+      if (i === index || i === (index + 1) % galleryItems.length) {
+        // ...plug in the real image source so it loads!
+        if (img && img.hasAttribute('data-src')) {
+          img.setAttribute('src', img.getAttribute('data-src'));
+          img.removeAttribute('data-src'); 
+        }
+      }
+
+      // Handle the active class
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
