@@ -184,68 +184,39 @@ document.addEventListener('DOMContentLoaded', function () {
   let isGalleryAnimating = false; 
 
   function showImage(index) {
-    
-    // --- 1. MAIN IMAGE LAZY LOAD ---
+    const totalItems = galleryItems.length;
+
+    // --- 1. THE RAM PURGE (MAIN IMAGES) ---
     galleryItems.forEach((item, i) => {
       const img = item.querySelector('img');
-      
-      // Load current and next main photo
-      if (i === index || i === (index + 1) % galleryItems.length) {
-        if (img && img.hasAttribute('data-src')) {
+      if (!img) return;
+
+      // Define the "Safe Window" (Only keep the Current, Next, and Previous photos in memory)
+      const isSafe = (
+        i === index || 
+        i === (index + 1) % totalItems || 
+        i === (index - 1 + totalItems) % totalItems
+      );
+
+      if (isSafe) {
+        // LOAD IT: Plug the real image in
+        if (img.hasAttribute('data-src')) {
           img.setAttribute('src', img.getAttribute('data-src'));
           img.removeAttribute('data-src'); 
         }
+      } else {
+        // PURGE IT: If it is out of view, delete it from Safari's memory!
+        if (img.getAttribute('src')) {
+          img.setAttribute('data-src', img.getAttribute('src')); // Save the URL for later
+          img.setAttribute('src', ''); // This instantly frees up the iPhone's RAM
+        }
       }
 
+      // Handle the CSS visibility
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
-
-    // --- 2. THUMBNAIL TRACK LAZY LOAD ---
-    const totalThumbs = thumbnails.length;
-    thumbnails.forEach((item, i) => {
-      
-      // Calculate a "visible window" of thumbnails (2 behind, 3 ahead)
-      const isVisibleThumb = (
-        i === index ||
-        i === (index + 1) % totalThumbs ||
-        i === (index + 2) % totalThumbs ||
-        i === (index + 3) % totalThumbs ||
-        i === (index - 1 + totalThumbs) % totalThumbs ||
-        i === (index - 2 + totalThumbs) % totalThumbs
-      );
-
-      // Plug in the real image source if it is inside the visible window
-      if (isVisibleThumb && item.hasAttribute('data-src')) {
-        item.setAttribute('src', item.getAttribute('data-src'));
-        item.removeAttribute('data-src');
-      }
-
-      // Handle the active border/styling
-      if (i === index) item.classList.add('active');
-      else item.classList.remove('active');
-    });
-
-    // --- 3. GLIDE THE TRACK ---
-    if (thumbTrack && thumbWindow && thumbnails.length) {
-      const activeThumb = thumbnails[index];
-      if (activeThumb) {
-        setTimeout(() => {
-            const thumbCenter = activeThumb.offsetLeft + (activeThumb.offsetWidth / 2);
-            const windowCenter = thumbWindow.offsetWidth / 2;
-            
-            let slideAmount = thumbCenter - windowCenter;
-            const maxSlide = thumbTrack.scrollWidth - thumbWindow.offsetWidth;
-            
-            if (slideAmount < 0) slideAmount = 0;
-            if (slideAmount > maxSlide) slideAmount = maxSlide;
-
-            thumbTrack.style.transform = `translateX(-${slideAmount}px)`;
-        }, 10);
-      }
-    }
-  }
-
+  };
   function navigate(direction) {
     if (isGalleryAnimating) return; 
     isGalleryAnimating = true;
