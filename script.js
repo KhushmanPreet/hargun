@@ -185,31 +185,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function showImage(index) {
     
-    // --- THE iOS MEMORY FIX ---
+    // --- 1. MAIN IMAGE LAZY LOAD ---
     galleryItems.forEach((item, i) => {
       const img = item.querySelector('img');
       
-      // If this is the photo we are viewing, OR the very next photo in line...
+      // Load current and next main photo
       if (i === index || i === (index + 1) % galleryItems.length) {
-        // ...plug in the real image source so it loads!
         if (img && img.hasAttribute('data-src')) {
           img.setAttribute('src', img.getAttribute('data-src'));
           img.removeAttribute('data-src'); 
         }
       }
 
-      // Handle the active class
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
 
-    // Swap the thumbnails
+    // --- 2. THUMBNAIL TRACK LAZY LOAD ---
+    const totalThumbs = thumbnails.length;
     thumbnails.forEach((item, i) => {
+      
+      // Calculate a "visible window" of thumbnails (2 behind, 3 ahead)
+      const isVisibleThumb = (
+        i === index ||
+        i === (index + 1) % totalThumbs ||
+        i === (index + 2) % totalThumbs ||
+        i === (index + 3) % totalThumbs ||
+        i === (index - 1 + totalThumbs) % totalThumbs ||
+        i === (index - 2 + totalThumbs) % totalThumbs
+      );
+
+      // Plug in the real image source if it is inside the visible window
+      if (isVisibleThumb && item.hasAttribute('data-src')) {
+        item.setAttribute('src', item.getAttribute('data-src'));
+        item.removeAttribute('data-src');
+      }
+
+      // Handle the active border/styling
       if (i === index) item.classList.add('active');
       else item.classList.remove('active');
     });
 
-    // Glide the thumbnail track
+    // --- 3. GLIDE THE TRACK ---
     if (thumbTrack && thumbWindow && thumbnails.length) {
       const activeThumb = thumbnails[index];
       if (activeThumb) {
