@@ -38,40 +38,29 @@
   justify-content: center;
 }
 
+/* --- Hides inactive photos to prevent iOS RAM crashes --- */
 .gallery-item {
-  position: absolute;
+  display: none; 
+  opacity: 0;
+  position: absolute; /* Keeps them stacked on top of each other */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-  pointer-events: none; 
-  
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
+/* --- Only the active photo is rendered by the GPU --- */
 .gallery-item.active {
+  display: block; 
   opacity: 1;
-  pointer-events: auto;
+  /* Make sure there is NO 'will-change' property here! */
 }
 
 .gallery-item img {
-  display: block;
-  
-  
-  max-width: 85%;
-  max-height: 85%;
-  width: auto;
-  height: auto;
-  
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.4); 
 }
-
 .nav-prev,
 .nav-next {
   position: absolute;
@@ -104,9 +93,7 @@
   display: flex;
   gap: 15px;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  
-  /* ADD THIS: Forces the phone's GPU to handle the sliding animation */
-  will-change: transform; 
+  will-change: transform; /* This is safe here! Keeps the sliding smooth. */
 }
 
 .thumbnail-item {
@@ -182,6 +169,14 @@ html {
 
 @media (max-width: 768px) {
   
+  .slide img, 
+  .gallery-item img {
+    filter: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
+
   .gallery-container {
     margin-top: 10px; 
   }
