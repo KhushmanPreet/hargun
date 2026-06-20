@@ -177,7 +177,7 @@ html {
   }
 
   .gallery-item img {
-    padding-top: 100px; /* Pushes the photo downward, away from the cross */
+    padding-top: 20px; /* Pushes the photo downward, away from the cross */
     padding-bottom: 30px; /* Adds a little breathing room at the bottom too */
     box-sizing: border-box; 
   }
