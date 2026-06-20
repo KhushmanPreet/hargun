@@ -103,18 +103,22 @@ if (hamburger) {
       });
   
       document.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowRight') {
-              nextSlide();
-              startTimer();
-          } else if (e.key === 'ArrowLeft') {
-              prevSlide();
-              startTimer();
-          }
-      });
-  
-      preloadNearbySlides(0);
-      startTimer();
-  });
+        if (e.key === 'ArrowRight') {
+            nextSlide();
+            startTimer();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+            startTimer();
+        }
+    });
+
+    preloadNearbySlides(0);
+    
+    /* THE FIX: Delays the timer so the browser doesn't panic and freeze */
+    setTimeout(() => {
+        startTimer();
+    }, 500); 
+});
 
 
   
