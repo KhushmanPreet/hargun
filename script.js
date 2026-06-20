@@ -112,13 +112,13 @@ if (hamburger) {
         }
     });
 
-    preloadNearbySlides(0);
+    // DELETED THE PRELOAD LINE HERE!
     
-    /* THE FIX: Delays the timer so the browser doesn't panic and freeze */
     setTimeout(() => {
         startTimer();
     }, 500); 
 });
+
 
 
   

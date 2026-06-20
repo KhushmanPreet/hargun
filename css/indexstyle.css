@@ -315,7 +315,13 @@ nav ul li a, #name a {
   }
 
   
-  .vignette {
-    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.85); 
-  }
+
+    /* ... your other mobile rules ... */
+  
+    /* THE FIX: Pushes the fade much further out toward the edges */
+    .slide img, .slide video {
+      -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    }
+  
 }
