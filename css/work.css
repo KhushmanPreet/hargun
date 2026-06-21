@@ -12,7 +12,9 @@ body {
 }
 
 
-
+img[src=""] {
+  visibility: hidden !important;
+}
 
 .headin {
   display: flex;
