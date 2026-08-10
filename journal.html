@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JOURNAL - HARGUN KAMBO</title>
   <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
-  <link rel="stylesheet" href="css/journal.css">
+  <link rel="stylesheet" type="text/css" href="css/journal.css">
 </head>
-<body>
-  
+<body class="journal-page">
+
   <header>
     <h1 id="name"><a href="index.html">HARGUN KAMBO</a></h1>
-    
+
     <div class="hamburger" id="hamburger">
       <span class="line"></span>
       <span class="line"></span>
       <span class="line"></span>
     </div>
-  
+
     <nav>
       <ul>
         <li><a href="work.html">WORK</a></li>
@@ -26,42 +27,28 @@
     </nav>
   </header>
 
+  <!-- layers are injected here by js/journal.js -->
+  <main class="journal"></main>
 
-  
-  <main class="journal-container">
-    <div class="journal-grid">
-      
-      <img src="allProject/jounal/666/Hargun_kambo_1.webp" alt="Archive">
-      <img src="allProject/jounal/666/Hargun_kambo_2.webp" alt="Archive">
-      <img src="allProject/jounal/666/Hargun_kambo_3.webp" alt="Archive">
-      <img src="allProject/jounal/666/Hargun_kambo_4.webp" alt="Archive">
-      <img src="allProject/jounal/666/Hargun_kambo_5.webp" alt="Archive">
-      <img src="allProject/jounal/alien_3 - Copy.webp" alt="Archive">
-      <img src="allProject/jounal/kam_har_5po_3.webp" alt="Archive">
-      <img src="allProject/jounal/Leon_langara-4.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/16_04_25_hargun_angela_infrared-6.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/16_04_25_hargun_angela_infrared-9.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/tt-1-6.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/2024_03_06_hargun_garv_infrared - Copy.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/2024_03_06_hargun_garv_infrared-5 - Copy.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/Leon_langara-5bwv2.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/29_03_2025_hargun_tejas_infrared_r-1-13 - Copy.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/tt-1-6.webp" alt="Archive">
-      <img src="allProject/jounal/infrared/rejected/29_03_25_hargun_lightpianting_insta.webp" alt="Archive">
-      <img src="allProject/jounal/dark/25_04_25_hargun_tejas_hauntedhouse_4_v2 - Copy.webp" alt="Archive">
-      <img src="allProject/jounal/dark/02_studio_Kambo__Hargun__v2 - Copy.webp" alt="Archive">
-      <img src="allProject/jounal/dark/29_03_25_hargun_lightpianting_insta.webp" alt="Archive">
-      <img src="allProject/jounal/dark/angela_langara-6v2.webp" alt="Archive">
-      <img src="allProject/jounal/dark/garry-1 - Copy.webp" alt="Archive">
+  <!-- click anywhere to go forward -->
+  <div class="journal__advance"></div>
 
-    </div>
+  <!-- project list, desktop only. Filled by js/journal.js -->
+  <nav class="journal__menu" aria-label="Projects">
+    <ul></ul>
+  </nav>
 
-    
-    <div class="blur-overlay">
-      <h2>UNDER CONSTRUCTION</h2>
-    </div>
-  </main>
+  <!-- current project name, phone only -->
+  <div class="journal__project"></div>
 
-  <script src="script.js"></script> 
+  <div class="journal__counter">
+    <span class="journal__counter-now">01</span> / <span class="journal__counter-total">01</span>
+  </div>
+
+  <div class="grain-overlay"></div>
+  <div class="vignette"></div>
+
+  <script src="script.js"></script>
+  <script src="journal.js"></script>
 </body>
 </html>

@@ -1,85 +1,290 @@
+/* ============================================================
+   JOURNAL
+   Photos are grouped into PROJECTS. Each entry inside a project
+   is a composition with four settings:
 
-.journal-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-}
+     zone   full | left | right | center     where on screen
+     align  {left|center|right}-{top|center|bottom}
+     size   fit | s | m | l | xl             height of the photo row
+     gap    none | s | m | l                 frame + gutter
 
+   Desktop : one composition at a time, click anywhere = forward.
+             Project list sits top-left: visible on arrival, hides
+             on first click, returns when the pointer nears it.
+   Phone   : every entry becomes a row in one vertical scroll, and
+             a fixed label bottom-right names the current project.
+   ============================================================ */
 
-.journal-grid {
-  display: grid;
+   :root {
+    --jl-gap-none: 0px;
+    --jl-gap-s:    0.4vw;
+    --jl-gap-m:    1.4vw;
+    --jl-gap-l:    2.05vw;
   
-  grid-template-columns: repeat(6, 1fr);
-  gap: 15px;
-  padding: 0 40px 40px 40px;
-}
-
-.journal-grid img {
-  width: 100%;
-  height: 200px; 
-  object-fit: cover;
-  filter: grayscale(80%) brightness(0.6); 
-}
-
-
-.blur-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  
-  
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px); 
-  
-  
-  background-color: rgba(0, 0, 0, 0.3); 
-  
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  
-  z-index: 100; 
-}
-
-
-.blur-overlay h2 {
-  color: #e0e0e0;
-  font-size: 24px;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  font-weight: normal;
-  text-align: center;
-}
-
-
-
-
-@media (max-width: 900px) {
-  .journal-grid {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0 30px 30px 30px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .journal-grid {
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 10px; 
-    padding: 0 15px 20px 15px; 
+    --jl-fade:     0.45s;
   }
   
-  .journal-grid img {
-    height: 150px; 
+  body.journal-page {
+    overflow: hidden;
+    height: 100vh;
   }
-
-  .blur-overlay h2 {
-    font-size: 18px; 
-    letter-spacing: 4px;
-    padding: 0 20px; 
+  
+  
+  /* ---------- stage ----------
+     Insets, not padding: layers are absolutely positioned, and an
+     absolute child resolves against the PADDING box — padding here
+     would not push them clear of the header.                    */
+  
+  .journal {
+    position: fixed;
+    top: 92px;
+    right: 0;
+    bottom: 58px;
+    left: 0;
+    z-index: 1;
   }
-}
+  
+  /* the header strip must not swallow clicks — only its links stay live */
+  body.journal-page header { pointer-events: none; }
+  body.journal-page header a,
+  body.journal-page header .hamburger { pointer-events: auto; }
+  
+  
+  /* ---------- layer ---------- */
+  
+  .jl {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    padding: var(--gap);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--jl-fade) ease, visibility 0s linear var(--jl-fade);
+  }
+  
+  .jl.is-current {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--jl-fade) ease, visibility 0s;
+  }
+  
+  .jl--gap-none { --gap: var(--jl-gap-none); }
+  .jl--gap-s    { --gap: var(--jl-gap-s); }
+  .jl--gap-m    { --gap: var(--jl-gap-m); }
+  .jl--gap-l    { --gap: var(--jl-gap-l); }
+  
+  .jl--zone-full   { left: 0;   width: 100%; }
+  .jl--zone-left   { left: 0;   width: 50%; }
+  .jl--zone-right  { right: 0;  width: 50%; }
+  .jl--zone-center { left: 25%; width: 50%; }
+  
+  /* 9-way placement: horizontal-vertical */
+  .jl--align-left-top      { justify-content: flex-start; align-items: flex-start; }
+  .jl--align-center-top    { justify-content: center;     align-items: flex-start; }
+  .jl--align-right-top     { justify-content: flex-end;   align-items: flex-start; }
+  .jl--align-left-center   { justify-content: flex-start; align-items: center; }
+  .jl--align-center-center { justify-content: center;     align-items: center; }
+  .jl--align-right-center  { justify-content: flex-end;   align-items: center; }
+  .jl--align-left-bottom   { justify-content: flex-start; align-items: flex-end; }
+  .jl--align-center-bottom { justify-content: center;     align-items: flex-end; }
+  .jl--align-right-bottom  { justify-content: flex-end;   align-items: flex-end; }
+  
+  
+  /* ---------- the photo row ---------- */
+  
+  .jl__assets {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+    max-width: 100%;
+    /* height is set in px by journal.js so the row always fits */
+  }
+  
+  .jl__asset {
+    height: 100%;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+  
+  .jl__asset img {
+    display: block;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  
+  
+  /* ---------- forward-only click surface ---------- */
+  
+  .journal__advance {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  
+  /* ---------- project menu (desktop) ---------- */
+  
+  .journal__menu {
+    position: fixed;
+    left: 40px;
+    top: 116px;
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  
+  .journal__menu.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* indexstyle.css styles every `nav ul li` as inline-block with a
+     right margin — undo that here so the project list stacks. */
+  .journal__menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .journal__menu ul li {
+    display: block;
+    margin: 0;
+  }
+  
+  .journal__menu button {
+    display: block;
+    margin: 0;
+    padding: 5px 0;
+    border: 0;
+    background: none;
+    font-family: 'HelveticaPro-Medium', sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    color: #e0e0e0;
+    cursor: crosshair;
+    text-shadow: 0 0 14px rgba(0, 0, 0, 0.95);
+    transition: color 0.25s ease;
+  }
+  
+  .journal__menu button:hover,
+  .journal__menu li.is-current button { color: var(--primary); }
+  
+  
+  /* ---------- project label (phone) ---------- */
+  
+  .journal__project {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 18px;
+    z-index: 60;
+    font-family: 'HelveticaPro-Medium', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e0e0e0;
+    text-shadow: 0 0 14px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
+    user-select: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .journal__project.is-swapping { opacity: 0; }
+  
+  
+  /* ---------- counter ---------- */
+  
+  .journal__counter {
+    position: fixed;
+    left: 40px;
+    bottom: 26px;
+    z-index: 50;
+    font-family: 'HelveticaPro-Medium', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #e0e0e0;
+    text-shadow: 0 0 14px rgba(0, 0, 0, 0.95);
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .journal__counter-now { color: var(--primary); }
+  
+  
+  /* ============================================================
+     PHONE — one vertical scroll
+  
+     Every layer stays in the page and becomes a ROW. Placement
+     survives: zone-full is a full-width row, zone-left / right are
+     half-width and adjacent ones pair side by side. Row height is
+     62.5vw for landscape, 100vw for portrait. size + align still
+     apply inside the row, which is what gives the staggered look.
+     ============================================================ */
+  
+  @media (max-width: 768px) {
+  
+    body.journal-page {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: auto;
+    }
+  
+    .journal {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+      height: auto;
+      padding: 0 0 80px;
+    }
+  
+    .jl {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      height: auto;
+      min-height: var(--row-h, 62.5vw);   /* set by journal.js */
+      visibility: visible;
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+  
+    .jl.in-view { opacity: 1; transform: none; }
+  
+    .jl--zone-full,
+    .jl--zone-center { width: 100%; }
+  
+    .jl--zone-left,
+    .jl--zone-right  { width: 50%; }
+  
+    /* keeps a right-zone row on the right when it has no partner;
+       harmless when it is paired, since the two halves fill the line */
+    .jl--zone-right { margin-left: auto; }
+  
+    /* scrolling is the navigation now */
+    .journal__advance,
+    .journal__menu,
+    .journal__counter { display: none; }
+  
+    .journal__project { display: block; }
+  }
+  
