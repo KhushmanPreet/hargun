@@ -37,17 +37,16 @@
           { photos: ['allProject/journal/infraredtestament/1.webp'], size: 'fit', gap: 'l' },
           { photos: ['allProject/journal/infraredtestament/2.webp','allProject/journal/infraredtestament/3.webp', 'allProject/journal/infraredtestament/4.webp'], size: 'l', gap: 'l' },
           { photos: ['allProject/journal/infraredtestament/5.webp'], size: 'fit', align: 'center-center' },
-          { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'm',  zone: 'right', align: 'center-top' },
-          { photos: ['allProject/journal/infraredtestament/7.webp'], size: 'l',  zone: 'left',  align: 'left-center' },
-          { photos: ['allProject/journal/infraredtestament/8.webp'], size: 'm',  zone: 'right', align: 'right-bottom' },
+          { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'fit', align: 'right-center' },
+          { photos: ['allProject/journal/infraredtestament/7.webp', 'allProject/journal/infraredtestament/8.webp'], size: 'l', gap: "l",  align: 'center' },
         ]
       },
       {
         name: 'No Saint',
         entries: [
-          { photos: ['allProject/journal/nosaint/1.webp'], size: 'xl', align: 'right-bottom', gap: 'l' },
-          { photos: ['allProject/journal/nosaint/2.webp'], size: 'm',  zone: 'left',  align: 'left-top' },
-          { photos: ['allProject/journal/nosaint/3.webp'], size: 'fit', zone: 'right', align: 'center-center' },
+          { photos: ['allProject/journal/nosaint/1.webp'], size: 'fit', align: 'center-center', gap: 'l' },
+          { photos: ['allProject/journal/nosaint/2.webp'], size: 'xl',  zone: 'left',  align: 'center-center' },
+          { photos: ['allProject/journal/nosaint/3.webp'], size: 'xl', zone: 'right', align: 'center-center' },
           { photos: ['allProject/journal/nosaint/4.webp', 'allProject/journal/nosaint/5.webp'], size: 'l',  align: 'center-center' },
           { photos: ['allProject/journal/nosaint/6.webp'], size: 'l',  zone: 'left',  align: 'center-bottom' },
           { photos: ['allProject/journal/nosaint/7.webp'], size: 'm',  zone: 'right', align: 'right-top' },
