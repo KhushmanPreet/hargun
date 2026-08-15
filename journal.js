@@ -35,9 +35,8 @@
         name: 'Infrared Testament',
         entries: [
           { photos: ['allProject/journal/infraredtestament/1.webp'], size: 'fit', gap: 'l' },
-          { photos: ['allProject/journal/infraredtestament/2.webp'], size: 'l',  zone: 'left',  align: 'left-center' },
-          { photos: ['allProject/journal/infraredtestament/3.webp'], size: 'm',  zone: 'right', align: 'right-bottom' },
-          { photos: ['allProject/journal/infraredtestament/4.webp', 'allProject/journal/infraredtestament/5.webp'], size: 'xl', gap: 'm' },
+          { photos: ['allProject/journal/infraredtestament/2.webp','allProject/journal/infraredtestament/3.webp', 'allProject/journal/infraredtestament/4.webp'], size: 'l', gap: 'l' },
+          { photos: ['allProject/journal/infraredtestament/5.webp'], size: 'fit', align: 'center-center' },
           { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'm',  zone: 'right', align: 'center-top' },
           { photos: ['allProject/journal/infraredtestament/7.webp'], size: 'l',  zone: 'left',  align: 'left-center' },
           { photos: ['allProject/journal/infraredtestament/8.webp'], size: 'm',  zone: 'right', align: 'right-bottom' },
