@@ -177,12 +177,13 @@ nav ul li a, #name a {
   z-index: 2;
 
   background: radial-gradient(
-    ellipse at center,
-    transparent 15%,
-    rgba(0, 0, 0, 0.2) 40%,
-    rgba(0, 0, 0, 0.65) 70%,
-    rgba(0, 0, 0, 1) 100%
-  );
+  ellipse at center,
+  transparent 10%,
+  rgba(0, 0, 0, 0.25) 35%,
+  rgba(0, 0, 0, 0.60) 60%,
+  rgba(0, 0, 0, 0.80) 80%,
+  rgba(0, 0, 0, 0.90) 100%
+);
 }
 /* This adds the dark shadows exclusively to the edges */
 
