@@ -112,7 +112,7 @@ nav ul li a, #name a {
   top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none;
   z-index: 6; 
-  box-shadow: inset 0 0 400px rgba(0,0,0,0.98);
+  box-shadow: inset 0 0 750px rgba(0,0,0,0.98);
 }
 
 .light-leak {
@@ -148,25 +148,43 @@ nav ul li a, #name a {
   overflow: hidden;
 }
 
-.slide {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: none; 
-}
-
-.slide.active {
-  display: block; 
-}
-
 
 .slide img, .slide video {
   width: 100%;
   height: 100%;
   object-fit: contain; 
-  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 70%);
-  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 25%, rgba(0,0,0,0) 70%);
+
 }
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+
+  background: radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0.55) 75%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+/* This adds the dark shadows exclusively to the edges */
 
 
 .click-zone {
