@@ -49,7 +49,7 @@
           { photos: ['allProject/journal/nosaint/3.webp'], size: 'xl', zone: 'right', align: 'center-center' },
           { photos: ['allProject/journal/nosaint/4.webp', 'allProject/journal/nosaint/5.webp'], size: 'l',  align: 'center-center' },
           { photos: ['allProject/journal/nosaint/6.webp'], size: 'l',  zone: 'left',  align: 'center-bottom' },
-          { photos: ['allProject/journal/nosaint/7.webp'], size: 'l',  zone: 'right', align: 'center-top' },
+          { photos: ['allProject/journal/nosaint/7.webp'], size: 'xl',  zone: 'right', align: 'center-center' },
           { photos: ['allProject/journal/nosaint/8.webp'], size: 'fit', gap: 'none' }
         ]
       },
