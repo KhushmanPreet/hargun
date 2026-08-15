@@ -34,7 +34,7 @@
       {
         name: 'Infrared Testament',
         entries: [
-          { photos: ['allProject/journal/infraredtestament/1.webp'], size: 'fit', gap: 'l' },
+          { photos: ['allProject/jounal/dark/angela_langara-6v2.webp'], size: 'fit', gap: 'l' },
           { photos: ['allProject/journal/infraredtestament/2.webp','allProject/journal/infraredtestament/3.webp', 'allProject/journal/infraredtestament/4.webp'], size: 'l', gap: 'l' },
           { photos: ['allProject/journal/infraredtestament/5.webp'], size: 'fit', align: 'center-center' },
           { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'fit', align: 'right-center' },
