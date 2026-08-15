@@ -38,7 +38,7 @@
           { photos: ['allProject/journal/infraredtestament/2.webp','allProject/journal/infraredtestament/3.webp', 'allProject/journal/infraredtestament/4.webp'], size: 'l', gap: 'l' },
           { photos: ['allProject/journal/infraredtestament/5.webp'], size: 'fit', align: 'center-center' },
           { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'fit', align: 'right-center' },
-          { photos: ['allProject/journal/infraredtestament/7.webp', 'allProject/journal/infraredtestament/8.webp'], size: 'l', gap: "l",  align: 'center' },
+          { photos: ['allProject/journal/infraredtestament/7.webp', 'allProject/journal/infraredtestament/8.webp'], size: 'l', gap: "l",  align: 'left-center' },
         ]
       },
       {
