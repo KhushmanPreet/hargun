@@ -178,10 +178,10 @@ nav ul li a, #name a {
 
   background: radial-gradient(
     ellipse at center,
-    transparent 20%,
-    rgba(0, 0, 0, 0.15) 45%,
-    rgba(0, 0, 0, 0.55) 75%,
-    rgba(0, 0, 0, 0.95) 100%
+    transparent 15%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.65) 70%,
+    rgba(0, 0, 0, 1) 100%
   );
 }
 /* This adds the dark shadows exclusively to the edges */
