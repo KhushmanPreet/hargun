@@ -35,7 +35,32 @@
         name: 'Infrared Testament',
         entries: [
           { photos: ['allProject/journal/infraredtestament/1.webp'], size: 'fit', gap: 'l' },
-          { photos: ['allProject/journal/infraredtestament/2.webp','allProject/journal/infraredtestament/3.webp', 'allProject/journal/infraredtestament/4.webp'], size: 'l', gap: 'l' },
+          {
+            photos: [
+              'allProject/journal/infraredtestament/2.webp',
+              'allProject/journal/infraredtestament/3.webp',
+              'allProject/journal/infraredtestament/4.webp'
+            ],
+            size: 'l',
+            gap: 'l',
+          
+            mobile: {
+              rows: [
+                {
+                  photos: [0, 1],
+                  size: 'm',
+                  gap: 'l',
+                  align: 'center-center'
+                },
+                {
+                  photos: [2],
+                  size: 'm',
+                  gap: 'none',
+                  align: 'center-center'
+                }
+              ]
+            }
+          },
           { photos: ['allProject/journal/infraredtestament/5.webp'], size: 'fit', align: 'center-center' },
           { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'fit', align: 'right-center' },
           { photos: ['allProject/journal/infraredtestament/7.webp', 'allProject/journal/infraredtestament/8.webp'], size: 'l', gap: "l",  align: 'left-center' },
@@ -114,50 +139,135 @@
     function build() {
       var frag = document.createDocumentFragment();
       var flat = 0;
-  
+    
       PROJECTS.forEach(function (project, p) {
         project.entries.forEach(function (entry) {
+    
           var layer = document.createElement('section');
-          layer.className = 'jl jl--zone-' + (entry.zone  || DEFAULTS.zone) +
-                            ' jl--align-'  + (entry.align || DEFAULTS.align) +
-                            ' jl--gap-'    + (entry.gap   || DEFAULTS.gap);
+    
+          layer.className =
+            'jl jl--zone-' + (entry.zone || DEFAULTS.zone) +
+            ' jl--align-' + (entry.align || DEFAULTS.align) +
+            ' jl--gap-' + (entry.gap || DEFAULTS.gap);
+    
           layer.setAttribute('data-size', entry.size || DEFAULTS.size);
           layer.setAttribute('data-project', p);
           layer.setAttribute('data-index', flat);
-  
+    
+          // Mark entries that have a custom phone layout
+          if (entry.mobile && entry.mobile.rows) {
+            layer.setAttribute('data-has-mobile-layout', 'true');
+          }
+    
+    
+          /* ============================================================
+             DESKTOP LAYOUT
+             This is exactly the original photo arrangement.
+             ============================================================ */
+    
           var row = document.createElement('div');
-          row.className = 'jl__assets';
-  
+          row.className = 'jl__assets jl__desktop-assets';
+    
           entry.photos.forEach(function (src) {
+    
             var fig = document.createElement('figure');
             fig.className = 'jl__asset';
-  
+    
             var img = document.createElement('img');
             img.src = src;
             img.alt = entry.alt || '';
             img.draggable = false;
+    
             img.addEventListener('load', function () {
               setRowHeight(layer);
               measure(layer);
             });
-  
+    
             fig.appendChild(img);
             row.appendChild(fig);
           });
-  
+    
           layer.appendChild(row);
+    
+    
+          /* ============================================================
+             PHONE-ONLY LAYOUT
+             Only created if this entry has `mobile.rows`.
+             ============================================================ */
+    
+          if (entry.mobile && entry.mobile.rows) {
+    
+            var mobileLayout = document.createElement('div');
+            mobileLayout.className = 'jl__mobile-layout';
+    
+            entry.mobile.rows.forEach(function (rowDef) {
+    
+              var mobileRow = document.createElement('div');
+    
+              mobileRow.className =
+                'jl__mobile-row' +
+                ' jl--gap-' + (rowDef.gap || DEFAULTS.gap) +
+                ' jl--align-' + (rowDef.align || DEFAULTS.align);
+    
+              mobileRow.setAttribute(
+                'data-size',
+                rowDef.size || DEFAULTS.size
+              );
+    
+    
+              var mobileAssets = document.createElement('div');
+              mobileAssets.className = 'jl__assets';
+    
+    
+              /* Pick the photos specified by their indexes */
+              (rowDef.photos || []).forEach(function (photoIndex) {
+    
+                var src = entry.photos[photoIndex];
+    
+                if (!src) return;
+    
+                var fig = document.createElement('figure');
+                fig.className = 'jl__asset';
+    
+                var img = document.createElement('img');
+                img.src = src;
+                img.alt = entry.alt || '';
+                img.draggable = false;
+    
+                fig.appendChild(img);
+                mobileAssets.appendChild(fig);
+              });
+    
+    
+              mobileRow.appendChild(mobileAssets);
+              mobileLayout.appendChild(mobileRow);
+            });
+    
+    
+            layer.appendChild(mobileLayout);
+          }
+    
+    
           frag.appendChild(layer);
-  
-          entryOf[flat] = { project: p, entry: entry };
+    
+          entryOf[flat] = {
+            project: p,
+            entry: entry
+          };
+    
           flat++;
         });
       });
-  
+    
+    
       stage.innerHTML = '';
       stage.appendChild(frag);
+    
       layers = Array.prototype.slice.call(stage.children);
-  
-      if (totalEl) totalEl.textContent = pad(layers.length);
+    
+      if (totalEl) {
+        totalEl.textContent = pad(layers.length);
+      }
     }
   
     function buildMenu() {

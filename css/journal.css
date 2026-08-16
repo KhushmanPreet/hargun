@@ -229,6 +229,9 @@
   
   .journal__counter-now { color: var(--primary); }
   
+  .jl__mobile-layout {
+    display: none;
+  }
   
   /* ============================================================
      PHONE — one vertical scroll
@@ -295,5 +298,83 @@
     .journal__counter { display: none; }
   
     .journal__project { display: block; }
+
+
+      /* all your existing phone CSS */
+      
+      /* ============================================================
+   CUSTOM PHONE PHOTO LAYOUTS
+   ============================================================ */
+
+.jl[data-has-mobile-layout="true"] {
+  /* Don't let the normal .jl row height control this */
+  min-height: auto;
+  height: auto;
+  display: block;
+}
+
+
+/* Hide the normal desktop composition */
+.jl[data-has-mobile-layout="true"] > .jl__desktop-assets {
+  display: none;
+}
+
+
+/* Show custom phone layout */
+.jl[data-has-mobile-layout="true"] > .jl__mobile-layout {
+  display: block;
+  width: 100%;
+}
+
+
+/* Each custom row gets the same general height as
+   your normal phone landscape rows */
+.jl__mobile-row {
+  position: relative;
+  width: 100%;
+  height: 62.5vw;
+  min-height: 0;
+
+  display: flex;
+  padding: var(--gap);
+
+  box-sizing: border-box;
+}
+
+
+/* The actual photo container */
+.jl__mobile-row .jl__assets {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--gap);
+}
+
+
+/* Individual photos */
+.jl__mobile-row .jl__asset {
+  height: 100%;
+  width: auto;
+
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+
+/* Images */
+.jl__mobile-row .jl__asset img {
+  display: block;
+
+  height: 100%;
+  width: auto;
+
+  object-fit: contain;
+
+  max-width: 100%;
+}
   }
   
