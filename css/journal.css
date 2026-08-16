@@ -285,6 +285,21 @@
     .journal__menu,
     .journal__counter { display: none; }
   
-    .journal__project { display: block; }
+    .journal__project {
+      display: block;
+      position: fixed;
+      top: 92px;
+      left: 20px;
+      right: auto;
+      bottom: auto;
+      margin-top: 0;
+      margin-bottom: 0;
+      z-index: 60;
+      text-shadow: none;
+    }
+
+    /* remove global cinematic overlays on mobile */
+    body.journal-page .grain-overlay,
+    body.journal-page .vignette { display: none !important; }
   }
   
