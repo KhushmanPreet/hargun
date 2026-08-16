@@ -24,6 +24,12 @@
     --jl-fade:     0.45s;
   }
   
+
+  body.journal-page .vignette,
+  body.journal-page .grain-overlay {
+    display: none;
+  }
+
   body.journal-page {
     overflow: hidden;
     height: 100vh;
@@ -184,21 +190,24 @@
   .journal__project {
     display: none;
     position: fixed;
-    right: 20px;
-    bottom: 18px;
+    left: 20px;
+    top: 90px;
+    right: auto;
+    bottom: auto;
     z-index: 60;
+  
     font-family: 'HelveticaPro-Medium', sans-serif;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #e0e0e0;
     text-shadow: 0 0 14px rgba(0, 0, 0, 0.95);
+  
     pointer-events: none;
     user-select: none;
     opacity: 1;
     transition: opacity 0.3s ease;
   }
-  
   .journal__project.is-swapping { opacity: 0; }
   
   
