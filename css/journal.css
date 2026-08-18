@@ -297,7 +297,7 @@
     .journal__menu,
     .journal__counter { display: none; }
   
-    .journal__project { display: block; }
+    .journal__project { color: rgb(211, 0, 0); display: block; }
 
 
       /* all your existing phone CSS */
