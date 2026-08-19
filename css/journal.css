@@ -123,6 +123,11 @@
     -webkit-user-drag: none;
   }
   
+  .jl.spread-photos .jl__assets {
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+  }
   
   /* ---------- forward-only click surface ---------- */
   
@@ -376,5 +381,8 @@
 
   max-width: 100%;
 }
+
+
+
   }
   

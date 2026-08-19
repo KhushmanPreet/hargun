@@ -61,9 +61,37 @@
               ]
             }
           },
-          { photos: ['allProject/journal/infraredtestament/5.webp'], size: 'fit', align: 'center-center' },
-          { photos: ['allProject/journal/infraredtestament/6.webp'], size: 'fit', align: 'right-center' },
-          { photos: ['allProject/journal/infraredtestament/7.webp', 'allProject/journal/infraredtestament/8.webp'], size: 'l', gap: "l",  align: 'left-center' },
+          {
+  photos: ['allProject/journal/infraredtestament/5.webp'],
+  size: 'fit',
+  align: 'center-center',
+
+  mobile: {
+    align: 'left-top',
+    size: 'm'
+  }
+},
+
+{
+  photos: ['allProject/journal/infraredtestament/6.webp'],
+  size: 'fit',
+  align: 'right-center',
+
+  mobile: {
+    align: 'right-bottom',
+    size: 'm'
+  }
+},
+{
+  photos: [
+    'allProject/journal/infraredtestament/7.webp',
+    'allProject/journal/infraredtestament/8.webp'
+  ],
+  size: 'l',
+  gap: 'l',
+  align: 'left-center',
+  customClass: 'spread-photos'
+},
         ]
       },
       {
@@ -146,9 +174,13 @@
           var layer = document.createElement('section');
     
           layer.className =
-            'jl jl--zone-' + (entry.zone || DEFAULTS.zone) +
-            ' jl--align-' + (entry.align || DEFAULTS.align) +
-            ' jl--gap-' + (entry.gap || DEFAULTS.gap);
+  'jl jl--zone-' + (entry.zone || DEFAULTS.zone) +
+  ' jl--align-'  + (entry.align || DEFAULTS.align) +
+  ' jl--gap-'    + (entry.gap || DEFAULTS.gap);
+
+if (entry.customClass) {
+  layer.classList.add(entry.customClass);
+}
     
           layer.setAttribute('data-size', entry.size || DEFAULTS.size);
           layer.setAttribute('data-project', p);
